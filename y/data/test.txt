@@ -1,0 +1,5 @@
+product02,categoryEnum.Laptops, brandEnum.Apple, 100000, true, 12, false, true, 2));
+product03,categoryEnum.Headphones, brandEnum.Bosch, 1000, false, 12, false, true, 1));
+product04,categoryEnum.Microwave, brandEnum.LG, 2000, false, 12, true, true, 4));
+product05,categoryEnum.Watches, brandEnum.Apple, 2000, false, 12, false, true, 6));
+product06,categoryEnum.Smartphones, brandEnum.LG, 2000, false, 12, false, true, 5));

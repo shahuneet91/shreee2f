@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Shree Electronics & Furniture</title>
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+</head>
+
+<body>
+
+    <div class="row headerLink" style="background-color: rgb(21, 22, 29); border-bottom: 3px solid red;">
+        <div class="col-md-2 col-xs-2" style="max-width: 175px;">
+            <a href="index.html">
+                <img src="./img/shree-logo-blk.png" alt="" />
+            </a>
+        </div>
+        <div class="col-md-2 col-xs-2" id="productLink" class="pageLinks">
+            <a style="color: white;" href="master.html">Master</a>
+        </div>
+        <div class="col-md-2 col-xs-2" id="indexLink" class="pageLinks">
+            <a style="color: white;" href="index.html">Website</a>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+
+            <form id="add-product"
+                style="border:2px dashed rgb(102, 0, 51); padding:2% 1% 2% 2%; border-radius: 15px !important">
+                <div class="row">
+                    <div class="alert alert-success" role="alert" style="display: none;" id="showFileAlert">
+                        No file Selected Previously uploaded file will be used.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 form-margin">
+                        <input type="text" placeholder="SKU" id="sku" class="form-control" required />
+                    </div>
+                    <div class="col-2 form-margin">
+                        <input type="text" placeholder="Product Name" id="productName"
+                            class="form-control" required />
+                    </div>
+                    <div class="col-2 form-margin">
+                        <select class="form-control" id="category" required>
+                        </select>
+                    </div>
+                    <div class="col-2 form-margin">
+                        <select class="form-control" id="brand" required>
+                        </select>
+                    </div>
+                    <div class="col-2 form-margin">
+                        <input type="number" placeholder="Price" id="price" class="form-control" required />
+                    </div>
+                    
+                    <div class="row" style="margin-top: 1%;">
+                    <div class="col-2 form-margin">
+                        <input type="text" placeholder="Rank" id="rank" class="form-control" required />
+                    </div>
+
+                    <div class="col-1 form-margin chkbox-padding chkbox-margin" style="width: 10%;">
+                        <input type="checkbox" id="discount" style="margin-left: 20%;" required />
+                        <label class="form-label" for="form4Example2">Discount</label>
+                    </div>
+                    <div class="col-1 form-margin">
+                        <input type="number" placeholder="%" id="discountPercent" class="form-control" style="width: 85%;" required />
+                    </div>
+                    <div class="col-2 form-margin chkbox-padding" style="margin-left: 0%; margin-right: 1.25%;">
+                        <input type="checkbox" id="hot" />
+                        <label class="form-label" for="form4Example2">Hot</label>
+                        <input type="checkbox" id="latest" style="margin-left: 15%;" />
+                        <label class="form-label" for="form4Example2">Latest</label>
+                    </div>
+                    <div class="col-2 form-margin">
+                        <input type="number" placeholder="Offer Price" id="discountPrice" class="form-control"
+                            required />
+                    </div>
+                    <div class="col-2 form-margin" style="margin-left: 1.5%;">
+                        <input type="file" id="files" multiple />
+                    </div>
+</div>
+
+
+                </div>
+                <div class="row">
+                    <input type="hidden" id="id_edit" name="id-edit" class="form-control" />
+                    <button type="submit" id="add" class="btn btn-primary center-button col-md-1">Add</button>
+                    <button type="button" id="update" class="btn btn-info center-button col-md-1"
+                        style="display: none;">Update</button>
+                    <button type="button" id="cancel" class="btn btn-info col-md-1"
+                        style="display: none;  margin-right: auto;">Cancel</button>
+                </div>
+            </form>
+
+
+
+            <div class="col-12"
+                style="border:2px dashed rgb(102, 0, 51); margin-top:2%; padding-top: 1%; border-radius: 15px !important">
+                <div class="alert alert-success" role="alert" style="display: none;" id="showalert2">
+                    Add Product Successfully!!
+                </div>
+                <div class="alert alert-danger" role="alert" style="display: none;" id="showalert">
+                    Delete Product Successfully!!
+                </div>
+                <div class="alert alert-info" role="alert" style="display: none;" id="showalert3">
+                    Update Product Successfully!!
+                </div>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="prdct-tbl" scope="col">Sku</th>
+                            <th class="prdct-tbl" scope="col">Name</th>
+                            <th class="prdct-tbl" scope="col">Category</th>
+                            <th class="prdct-tbl" scope="col">Brand</th>
+                            <th class="prdct-tbl" scope="col">Price</th>
+                            <th class="prdct-tbl" scope="col">Dicnt</th>
+                            <th class="prdct-tbl" scope="col">%</th>
+                            <th class="prdct-tbl" scope="col">Hot</th>
+                            <th class="prdct-tbl" scope="col">Latest</th>
+                            <th class="prdct-tbl" scope="col">Rank</th>
+                            <th class="prdct-tbl" scope="col">Ofr Price</th>
+                            <th class="prdct-tbl" scope="col">Img Name</th>
+                            <th class="prdct-tbl" scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCpr3eDyk7yg6JmOnpNR8CEt5wOmTsNU2Y",
+            authDomain: "shreeetof.firebaseapp.com",
+            databaseURL: "https://shreeetof-default-rtdb.firebaseio.com",
+            projectId: "shreeetof",
+            storageBucket: "shreeetof.appspot.com",
+            messagingSenderId: "410252514308",
+            appId: "1:410252514308:web:917f22e7ad2af870ed9151"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
+
+    </script>
+</body>
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="js/products.js"></script>
+
+</html>

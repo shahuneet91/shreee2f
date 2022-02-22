@@ -1,0 +1,48 @@
+.form-margin {
+  margin: 0% 1% 0% 1%;
+}
+
+.form-checkbox-padding {
+  padding-top: 0.5%;
+}
+
+.center-button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prdct-tbl {
+  padding: 5px 5px 5px 5px !important;
+  text-align: center !important;
+}
+
+.chkbox-padding{
+  padding-top: 0.5% !important;
+}
+
+.chkbox-margin{
+  margin-right: 0% !important;
+  margin-left: 0% !important;
+}
+
+@media (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 95%;
+  }
+}
+
+.row > #productLink, #indexLink {
+  margin: auto 1% auto 1% !important;
+  max-width: 100px !important;
+}
+
+@media screen and (min-width: 400px) {
+  .row > #productLink, #indexLink{
+    margin-top: 1% !important;
+    max-width: 100px !important;
+  }
+}

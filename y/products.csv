@@ -1,0 +1,10 @@
+﻿Sku,Name,Category,Brand,Price,Discount,Percent,hot,Latest,rank
+prd-1,Samsung WashingMachine,Refrigerator,Samsung,10000,TRUE,10,FALSE,TRUE,3
+prd-2,Mac Book Pro,Laptops,Apple,100000,TRUE,12,FALSE,TRUE,2
+prd-3,Bosch HP,Headphones,Bosch,1000,FALSE,12,FALSE,TRUE,1
+prd-4,LG Microvave,Microwave,LG,2000,FALSE,12,TRUE,TRUE,4
+prd-5,IWatch6,Watches,Apple,2000,FALSE,12,FALSE,TRUE,6
+prd-6,LG A1,Smartphones,LG,2000,FALSE,12,FALSE,TRUE,5
+prd-7,LG A2,Smartphones,LG,2000,FALSE,12,FALSE,TRUE,5
+prd-8,LG A3,Smartphones,LG,2000,FALSE,12,FALSE,TRUE,5
+prd-9,LG A4,Smartphones,LG,2000,FALSE,12,FALSE,TRUE,5
