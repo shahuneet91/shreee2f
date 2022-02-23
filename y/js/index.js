@@ -6,12 +6,15 @@ $(document).ready(function(){
 function resize() {
   if ($(window).width() < 700) {
     $("#filter").addClass("collapse");
-    $("#categoryFilter").addClass("collapse");
+ 
     $("#priceFilter").addClass("collapse");
-    $("#brandFilter").addClass("collapse");
+
     $("#topSelling").addClass("collapse");
   }
 }
+
+$("#categoryFilter").addClass("collapse");
+$("#brandFilter").addClass("collapse");
 
 //watch window resize
 $(window).on("load", function () {
