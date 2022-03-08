@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Shree Electronics & Furniture</title>
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="./css/style.css" />
+    <link type="text/css" rel="stylesheet" href="./css/footer.css" />
+    <style>
+
+
+    </style>
+</head>
+<script>
+    $(function () {
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+        $("#add-product").load("product-form.html");
+        $("#product-table").load("product-table.html");
+    });
+</script>
+</head>
+
+<div id="header" class="main-header"></div>
+</br>
+<body>
+<div class="product-container">
+    <div class="row">
+
+        <div id="add-product" class="add-product"> </div>
+        <div id="product-table" class="col-12 product-table">
+        </div>
+    </div>
+</div>
+</br>
+<div id="footer" class="footer-div"></div>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyCpr3eDyk7yg6JmOnpNR8CEt5wOmTsNU2Y",
+        authDomain: "shreeetof.firebaseapp.com",
+        databaseURL: "https://shreeetof-default-rtdb.firebaseio.com",
+        projectId: "shreeetof",
+        storageBucket: "shreeetof.appspot.com",
+        messagingSenderId: "410252514308",
+        appId: "1:410252514308:web:917f22e7ad2af870ed9151"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    var db = firebase.firestore();
+    db.settings({ timestampsInSnapshots: true });
+
+</script>
+<script>
+$(document).ready(function() {
+    $.getScript("./js/products.js");
+});
+</script>
+</body>
+</html>

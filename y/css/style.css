@@ -53,8 +53,10 @@ Table OF Contents
 
 /*----------------------------*\
 	Typography
-\*----------------------------*/
-
+\*----------------------------
+html, body {
+  overflow: hidden;
+}*/
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -86,12 +88,7 @@ a:focus {
   outline: none;
 }
 
-ul,
-ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+
 
 /*----------------------------*\
 	Buttons
@@ -312,8 +309,8 @@ textarea.input {
 \*----------------------------*/
 
 .section {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .section-title {
@@ -1241,7 +1238,7 @@ textarea.input {
 \*----------------------------*/
 
 .aside + .aside {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .aside > .aside-title {
@@ -1314,10 +1311,6 @@ textarea.input {
 	Store
 \*----------------------------*/
 
-.store-filter {
-  margin-bottom: 15px;
-  margin-top: 15px;
-}
 
 /*-- Store Sort --*/
 
@@ -2053,20 +2046,15 @@ textarea.input {
   background: #1e1f29;
 }
 
-.footer {
-  margin: 30px 0px;
-}
 
 .footer .footer-title {
   color: #fff;
   text-transform: uppercase;
   font-size: 18px;
-  margin: 0px 0px 30px;
+  margin: 0px 0px 10px;
 }
 
-.footer-links li + li {
-  margin-top: 15px;
-}
+
 
 .footer-links li a {
   color: #b9babc;

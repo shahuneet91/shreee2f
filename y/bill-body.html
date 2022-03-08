@@ -1,0 +1,121 @@
+<div id="bill-body" class="row">
+
+    <div class="bill-form bill-border row">
+        <div class="bill-form-left col-md-3">
+            <h6 style="color:white; font-family: 'Montserrat', sans-serif;">Shree Electronics and Furniture</h6>
+            <h6 style="color:white;">Customer Details</h6>
+            <input type="text" class="bill-input-left" id="companyName" placeholder="First Name"/>
+            <input type="text" class="bill-input-left" id="fName" placeholder="First Name" required/>
+            <input type="text" class="bill-input-left" id="fName" placeholder="Last Name" required/>
+            <input type="date" class="bill-input-left" id="billDate" name="bill Date" required>
+            <input type="text" class="bill-input-left" id="add1" placeholder="Address Line 1" required/>
+            <input type="text" class="bill-input-left" id="add2" placeholder="Address Line 2" />
+            <input type="text" class="bill-input-left-1 col-md-4" id="city" placeholder="City" id="city" />
+            <input type="text" class="bill-input-left-1 col-md-4" id="zip" placeholder="Zip" id="zip" />
+            <input type="text" class="bill-input-left-1 col-md-4" id="state" placeholder="State" id="state" />
+            <input type="text" class="bill-input-left" id="spName" placeholder="SP Name">
+            <input type="text" class="bill-input-left" id="customerAdd2" placeholder="Search Address here"
+                id="addSearch" />
+        </div>
+        <div class="bill-form-right col-md-9">
+            <div class="row">
+                <h5 class="col-md-4 col-xs-12" style="color:#4835d4; font-family: 'Montserrat', sans-serif;">Bill
+                    Details</h5>
+                <h7 class="col-md-4 col-sm-6" style="color:#4835d4; font-family: 'Montserrat', sans-serif;">GSTIN:
+                    ###########</h7>
+                <h7 class="col-md-4 col-sm-6" style="color:#4835d4; font-family: 'Montserrat', sans-serif;">Invoice No.
+                    : <span id="billId">billId</span></h7>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="bill-border col-md-1">#</th>
+                        <th scope="col" class="bill-border col-md-7">Item</th>
+                        <th scope="col" class="bill-border col-md-1">Qty</th>
+                        <th scope="col" class="bill-border col-md-2">Price</th>
+                        <th scope="col" class="bill-border col-md-1">%</th>
+                        <th scope="col" class="bill-border col-md-2">% Price</th>
+                    </tr>
+                </thead>
+                
+                <tbody id="billItems">
+                    <tr id="item-itemCount">
+                      <td scope="row" class="bill-border col-md-1">${ic}</td>
+                      <td scope="col" class="bill-border col-md-6">
+                          <div id="divlbl-${itemCount}">
+                              <span id="lbl-${itemCount}" onClick="editItem(itemCount)"></span>
+                          </div>
+                          <div id="divItemsList-${itemCount}">
+                              <select id="itemsList-${itemCount}" class="input bill-form-item">
+                              </select>
+                          </div>
+                      </td>
+                      <td scope="col" class="bill-border col-md-1">
+                          <button id="removeItem-${itemCount}" class="btn btn-primary btnAddItem remove-${itemCount}"
+                          onClick="removeItem(itemCount)">
+                          <img class="btnAddIcon" src="https://img.icons8.com/fluency/48/000000/minus.png" />
+                      </button>
+                      </td>
+                      <td scope="col" class="bill-border col-md-1">
+                          <input type="text" class="ip-qty input" id="qty-${itemCount}">
+                      </td>
+                      <td scope="col" class="bill-border col-md-2">
+                          &#8377; <span id="lblOprice-${itemCount}">0</span>
+                      </td>
+                      <td scope="col" class="bill-border col-md-1">
+                          <input type="text" class="ip-qty input" id="ipDiscount-${itemCount}"> %</span>
+                      </td>
+                      <td scope="col" class="bill-border col-md-2">
+                          &#8377; <span id="lblDprice-${itemCount}">0</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                <thead>
+                    <tr class="table-total">
+                        <th scope="col" class="col-md-3 bill-border">
+                            <button id="btnSave" class="btn btn-link btn-sm" onClick="saveBill();">
+                                <img class="btn-action" src="https://img.icons8.com/nolan/64/save.png" />
+                            </button>
+                        </th>
+                        <th scope="col" class="col-md-3 bill-border">
+                            <button id="btnPrint" class="btn btn-link btn-sm" onClick="printBill();">
+                                <img class="btn-action"
+                                    src="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-print-photography-icongeek26-outline-colour-icongeek26.png" />
+                            </button>
+                        </th>
+                        <th scope="col" class="col-md-3 bill-border">
+                            <h6 style="color:#4835d4; font-family: 'Montserrat', sans-serif;">Total</h6>
+                        </th>
+                        <th scope="col" class="col-md-2 bill-border">&#8377; <span id="totalPrice"></span></th>
+                        <th scope="col" class="col-md-1 bill-border"><span id="totalDiscountPercent"></span> %</th>
+                        <th scope="col" class="col-md-2 bill-border">&#8377; <span id="totalDiscountedPrice"></span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row bill-footer">
+    <div class="col-md-6">
+        <h8><img src="https://img.icons8.com/external-microdots-premium-microdot-graphic/64/000000/external-address-business-finance-vol4-microdots-premium-microdot-graphic.png"
+                style="width: 3%;" />
+            Agarwal Tower,
+            Opp Central Bank, GT Road. Etah
+        </h8>
+    </div>
+
+    <div class="col-md-3">
+        <h8>
+            <img src="https://img.icons8.com/cotton/64/000000/iphone-x--v1.png" style="width: 5%;" />
+            +919045493049
+        </h8>
+    </div>
+    <div class="col-md-3">
+        <h8>
+            <img src="https://img.icons8.com/cotton/64/000000/secured-letter--v1.png" style="width: 6%;" />
+            rahul.agrawal689@gmail.com
+        </h8>
+    </div>
+</div>

@@ -8,13 +8,36 @@ var categoryEnum = {
 };
 
 class category {
-  constructor(name, count, filter) {
+  constructor(id, name, count, filter) {
+    this.id = id;
     this.name = name;
     this.count = count;
     this.filter = filter;
   }
 }
 var categoryList = [];
+//localStorage.clear();
+if (localStorage.getItem("allCategories")) {
+  var categoriesCache = window.localStorage.getItem("allCategories");
+  if (categoriesCache != undefined && categoriesCache != "[]") {
+    //alert("local has cat");
+    categoryList = JSON.parse(categoriesCache);
+  }
+}
+
+if (categoryList.length == 0) {
+  //alert("calling db for cat");
+  db.collection("categories")
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        categoryList.push(new category(doc.id, doc.data().category, 0, false));
+      });
+      var categoriesJson = JSON.stringify(categoryList);
+      window.localStorage.setItem("allCategories", categoriesJson);
+    });
+}
+
 // categoryList.push(new category(categoryEnum.Laptops, 0, false));
 // categoryList.push(new category(categoryEnum.Smartphones, 0, false));
 // categoryList.push(new category(categoryEnum.Refrigerator, 0, false));
@@ -32,7 +55,8 @@ var brandEnum = {
 };
 
 class brand {
-  constructor(name, count, filter) {
+  constructor(id, name, count, filter) {
+    this.id = id;
     this.name = name;
     this.count = count;
     this.filter = filter;
@@ -46,80 +70,136 @@ var brandList = [];
 // brandList.push(new brand(brandEnum.Bosch, 0, false));
 // brandList.push(new brand(brandEnum.Sony, 0, false));
 
-db.collection("categories")
-  .get()
-  .then((snapshot) => {
-    snapshot.docs.forEach((doc) => {
-      categoryList.push(new category(doc.data().category, 0, false));
-    });
-  });
+if (localStorage.getItem("allBrandList")) {
+  var brandsCache = window.localStorage.getItem("allBrandList");
+  if (brandsCache != undefined && brandsCache != "[]") {
+    //alert("local has brand");
+    brandList = JSON.parse(brandsCache);
+  }
+}
 
-db.collection("brands")
-  .get()
-  .then((snapshot) => {
-    snapshot.docs.forEach((doc) => {
-      brandList.push(new category(doc.data().brand, 0, false));
+if (brandList.length == 0) {
+  //alert("calling db for brand");
+  db.collection("brands")
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        brandList.push(new brand(doc.id, doc.data().brand, 0, false));
+      });
+      var brnadsJson = JSON.stringify(brandList);
+      window.localStorage.setItem("allBrandList", brnadsJson);
     });
-  });
+}
 
 class product {
   constructor(
+    id,
     sku,
     name,
     category,
     brand,
     price,
     discount,
-    dicountPercent,
+    percent,
     hot,
     latest,
     rank,
-    discountedPrice,
+    disPrice,
     imageName,
     imageUrl
   ) {
-    this.sku = sku
+    this.id = id,
+    this.sku = sku;
     this.name = name;
     this.category = category;
     this.brand = brand;
     this.price = price;
     this.discount = discount;
-    this.dicountPercent = dicountPercent;
+    this.percent = percent;
     this.hot = hot;
     this.latest = latest;
     this.rank = rank;
-    this.discountedPrice = discountedPrice;
+    this.discPrice = disPrice;
     this.imageName = imageName;
     this.imageUrl = imageUrl;
   }
 }
 
-var allProducts = [];
 var dbProducts = [];
 
-db.collection("products")
-  .get()
-  .then((snapshot) => {
-    snapshot.docs.forEach((doc) => {
-      dbProducts.push(
-        new product(
-          doc.data().sku,
-          doc.data().name,
-          doc.data().category,
-          doc.data().brand,
-          parseInt(doc.data().price),
-          doc.data().discount,
-          parseInt(doc.data().percent),
-          doc.data().hot,
-          doc.data().latest,
-          doc.data().rank,
-          parseInt(doc.data().discountPrice),
-          doc.data().imageName
-        )
-      );
+if (localStorage.getItem("dbProducts")) {
+  var productsCache = window.localStorage.getItem("dbProducts");
+  if (productsCache != undefined && productsCache != "[]") {
+    //alert("local has products");
+    dbProducts = JSON.parse(productsCache);
+  }
+}
+
+if (dbProducts.length == 0) {
+  //alert("calling db for products");
+  db.collection("products")
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        dbProducts.push(
+          new product(
+            doc.id,
+            doc.data().sku,
+            doc.data().name,
+            doc.data().category,
+            doc.data().brand,
+            parseInt(doc.data().price),
+            doc.data().discount,
+            parseInt(doc.data().percent),
+            doc.data().hot,
+            doc.data().latest,
+            doc.data().rank,
+            parseInt(doc.data().discountPrice),
+            doc.data().imageName
+          )
+        );
+      });
+      debugger;
+      var productsJson = JSON.stringify(dbProducts);
+      window.localStorage.setItem("dbProducts", productsJson);
     });
-  });
+}
 
+class bill {
+  constructor(
+    billId,
+    billDate,
+    customerName,
+    customerAdd1,
+    customerAdd2,
+    items,
+    totalPrice,
+    totalDiscount,
+    billAmount,
+    paid,
+    employee
+  ) {
+    this.billId = billId;
+    this.billDate = billDate;
+    this.customerName = customerName;
+    this.customerAdd1 = customerAdd1;
+    this.customerAdd2 = customerAdd2;
+    this.items = items;
+    this.totalPrice = totalPrice;
+    this.totalDiscount = totalDiscount;
+    this.billAmount = billAmount;
+    this.paid = paid;
+    this.employee = employee;
+  }
+}
 
-
-
+class billItem {
+  constructor(sku, name, price, discountPercent, discountPrice, qty) {
+    this.sku = sku;
+    this.name = name;
+    this.price = price;
+    this.discountPercent = discountPercent;
+    this.discountPrice = discountPrice;
+    this.qty = qty;
+  }
+}

@@ -1,28 +1,26 @@
-const add_category = $("#add-category");
-const catAddedMsg = document.querySelector("div[id=catAddedMsg]");
-const catUpdateMsg = document.querySelector("div[id=catUpdateMsg]");
-const catDeleteMsg = document.querySelector("div[id=catDeleteMsg]");
+// const catAddedMsg = document.querySelector("div[id=catAddedMsg]");
+// const catUpdateMsg = document.querySelector("div[id=catUpdateMsg]");
+// const catDeleteMsg = document.querySelector("div[id=catDeleteMsg]");
 
-const updateCatBtn = document.getElementById("updateCat");
-const addCatBtn = document.getElementById("addCat");
-const cancelCatBtn = document.getElementById("cancelCat");
+// const updateCatBtn = document.getElementById("updateCat");
+// const addCatBtn = document.getElementById("addCat");
+// const cancelCatBtn = document.getElementById("cancelCat");
 
-// $(document).ready(function () {
-//   db.collection("categories")
-//     .get()
-//     .then((snapshot) => {
-//       snapshot.docs.forEach((doc) => {
-//         fetchAllCategories(doc);
-//       });
-//     });
+function docCatagoryReady(){
+  var allCatInterval = setInterval(function () {
+    if (categoryList.length > 0) {
+      $.each(categoryList, function () {
+        populateAllCategories(this);
+      });
+      clearInterval(allCatInterval);
+    }
+  }, 500);
+}
 
-  
-// });
-
-function fetchAllCategories(doc) {
-    $("#categories-table").append(`<tr style="width: 75%;" id="${doc.id}">
-					 <td>${doc.data().category}</td>
-					 <td style="text-align: center !important;"><a href="javascript:void(0)" class="editCat fa fa-edit" id="${
+function populateAllCategories(doc) {
+    $("#categories-table").append(`<tr id="${doc.id}">
+					 <td>${doc.name}</td>
+					 <td style="text-align: end !important; padding-right: 8%;"><a href="javascript:void(0)" class="editCat fa fa-edit" id="${
              doc.id
            }"></a> | <a href="javascript:void(0)" class="delCat fa fa-trash" id="${doc.id}"></a></td>
 	             </tr>`);
@@ -31,9 +29,11 @@ function fetchAllCategories(doc) {
       e.stopImmediatePropagation();
       var id = e.target.id;
       db.collection("categories").doc(id).delete();
-      catDeleteMsg.style.display = "block";
+      var catIndex = categoryList.findIndex(x=>x.id = id);
+      categoryList.splice(catIndex,1);
+      $('#catDeleteMsg').css('display', 'block');
       setTimeout(function () {
-        catDeleteMsg.remove();
+        $('#catDeleteMsg').remove();
       }, 5000);
       resetForm();
     });
@@ -42,18 +42,52 @@ function fetchAllCategories(doc) {
       e.stopImmediatePropagation();
       resetMsg();
       var id = e.target.id;
-      db.collection("categories")
-        .doc(id)
-        .get()
-        .then((doc) => {
-          $("#category").val(doc.data().category);
-          $("#id_edit_cat").val(doc.id);
-        });
-      addCatBtn.style.display = "none";
-      updateCatBtn.style.display = "block";
-      cancelCatBtn.style.display = "block";
+      var cat= categoryList.find(x=>x.id = id);
+      $("#category").val(cat.name);
+      $("#id_edit_cat").val(doc.id);
+      $('#addCatBtn').css('display', 'none');
+      $('#updateCatBtn').css('display', 'block');
+      $('#cancelCatBtn').css('display', 'block');
     });
   }
+
+$("#updateCat").on("click", () => {
+  $('#catDeleteMsg').css('display', 'none');
+  $('#catAddedMsg').css('display', 'none');
+  $('#catUpdateMsg').css('display', 'block');
+  var id = $("#id_edit_cat").val();
+  var updatedCat = new category($("#category").val(), 0, false);
+  db.collection("categories").doc(id).set(
+    {
+      category: updatedCat.name,
+    },
+    {
+      merge: true,
+    }
+  );
+  var catIndex = categoryList.findIndex((x) => (x.id = id));
+  categoryList.splice(catIndex, 1, updatedCat);
+  setTimeout(function () {
+    $('#catUpdateMsg').remove();
+  }, 5000);
+  resetForm();
+});
+
+$("#add-category").on("submit", (e) => {
+  e.preventDefault();
+  $('#catDeleteMsg').css('display', 'none');
+  var newCat = new category($("#category").val(), 0, false);
+  db.collection("categories").add({
+    name: newCat.name,
+    added_at: Date(),
+  });
+  categoryList.push(newCat)
+  $('#catAddedMsg').css('display', 'block');
+  setTimeout(function () {
+    $('#catAddedMsg').remove();
+  }, 5000);
+  resetForm();
+});
 
 $("#cancelCat").on("click", () => {
   e.stopImmediatePropagation();
@@ -61,68 +95,18 @@ $("#cancelCat").on("click", () => {
   resetForm();
 });
 
-$("#updateCat").on("click", () => {
-  catDeleteMsg.style.display = "none";
-  catAddedMsg.style.display = "none";
-  catUpdateMsg.style.display = "block";
-  var id = $("#id_edit_cat").val();
-  db.collection("categories")
-    .doc(id)
-    .set(
-      {
-        category: $("#category").val(),
-      },
-      {
-        merge: true,
-      }
-    );
-  setTimeout(function () {
-    catUpdateMsg.remove();
-  }, 5000);
-  resetForm();
-});
-
-add_category.on("submit", (e) => {
-  e.preventDefault();
-  catDeleteMsg.style.display = "none";
-  catDeleteMsg.style.display = "none";
-  db.collection("categories").add({
-    category: $("#category").val(),
-    added_at: Date(),
-  });
-  catAddedMsg.style.display = "block";
-  setTimeout(function () {
-    catAddedMsg.remove();
-  }, 5000);
-  resetForm();
-});
-
 function resetForm() {
   $("#category").val("");
-  addCat.style.display = "block";
-  updateCat.style.display = "none";
-  cancelCat.style.display = "none";
+  $('#addCat').css('display', 'block');
+  $('#updateCat').css('display', 'none');
+  $('#cancelCat').css('display', 'none');
   resetMsg();
 }
 
 function resetMsg() {
-  catAddedMsg.style.display = "none";
-  catDeleteMsg.style.display = "none";
-  catUpdateMsg.style.display = "none";
+  $('#catAddedMsg').css('display', 'none');
+  $('#catDeleteMsg').css('display', 'none');
+  $('#catUpdateMsg').css('display', 'none');
 }
 
-db.collection("categories").onSnapshot((snapshot) => {
-  let changes = snapshot.docChanges();
-  changes.forEach((change) => {
-    if (change.type == "added") {
-      fetchAllCategories(change.doc);
-    } else if (change.type == "removed") {
-      var id = change.doc.id;
-      $("#" + id).remove();
-    } else if (change.type == "modified") {
-      var id = change.doc.id;
-      $("#" + id).remove();
-      fetchAllcategories(change.doc);
-    }
-  });
-});
+

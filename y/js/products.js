@@ -1,210 +1,289 @@
 
 
-const add_product = $('#add-product');
 
 
-const x = document.querySelector('div[id=showalert]');
-const z = document.querySelector('div[id=showalert2]');
-const y = document.querySelector('div[id=showalert3]');
-const f = document.querySelector('div[id=showFileAlert]');
+// const x = document.querySelector('div[id=showalert]');
+// const z = document.querySelector('div[id=showalert2]');
+// const y = document.querySelector('div[id=showalert3]');
+// const f = document.querySelector('div[id=showFileAlert]');
 //const edit = $('#update');
 
-const update = document.getElementById('update');
-const add = document.getElementById('add');
-const cancel = document.getElementById('cancel');
+// const update = document.getElementById('update');
+// const add = document.getElementById('add');
+// const cancel = document.getElementById('cancel');
 
 var files = [];
 var fileName;
 var uploadSuccess = false;
 
-$(document).ready(function(){
- /*	db.collection('products').get().then((snapshot) =>{
- 		snapshot.docs.forEach(doc => {
- 		   //console.log(doc.data());
- 		   fetchAllproducts(doc);
- 		});
-	});*/
+var allProducts = [];
 
-    db.collection('categories').get().then((snapshot) =>{
-        snapshot.docs.forEach(doc => {
-           //console.log(doc.data());
-           setCategoryOptions(doc);
-        });
-   });
-   db.collection('brands').get().then((snapshot) =>{
-    snapshot.docs.forEach(doc => {
-       //console.log(doc.data());
-       setBrandOptions(doc);
-    });
-});
-});
+function productDocumentReady(){
+  var prdInterval = setInterval(function () {
+    if (dbProducts.length > 0) {
+      $.each(dbProducts, function () {
+        polpulateAllProducts(this);
+      });
+      clearInterval(prdInterval);
+    }
+  }, 500);
 
-function fetchAllproducts(doc) {
-  var url = "";
+  var prdCatInterval = setInterval(function () {
+    if (categoryList.length > 0) {
+      $.each(categoryList, function () {
+        setCategoryOptions(this);
+      });
+      clearInterval(prdCatInterval);
+    }
+  }, 500);
+
+  var prdBrandInterval = setInterval(function () {
+    
+    if (brandList.length > 0) {
+      $.each(brandList, function () {
+        setBrandOptions(this);
+      });
+      clearInterval(prdBrandInterval);
+    }
+  }, 500);
+}
+
+function polpulateAllProducts(doc) {
+  
   var imageName = "";
   var id = "";
-  if (doc.data().imageName == undefined) {
-    url = "#";
+  if (doc.imageName == undefined) {
     imageName = "";
     id = "";
   } else {
-    url = getFileUrl(doc.data().imageName);
-    id = doc.data().imageName;
-    imageName = doc.data().imageName;
+    id = doc.imageName;
+    imageName = doc.imageName;
   }
- 
+
     $('#products-table').append(`<tr class="prdct-tbl" id="${doc.id}">
-          <td class="prdct-tbl" >${doc.data().sku}</td>
-					<td class="prdct-tbl" >${doc.data().name}</td>
-					<td class="prdct-tbl" >${doc.data().category}</td>
-					<td class="prdct-tbl" >${doc.data().brand}</td>
-					<td class="prdct-tbl" >${doc.data().price}</td>
-          <td class="prdct-tbl" >${doc.data().discount}</td>
-          <td class="prdct-tbl" >${doc.data().percent}</td>
-          <td class="prdct-tbl" >${doc.data().hot}</td>
-          <td class="prdct-tbl" >${doc.data().latest}</td>
-          <td class="prdct-tbl" >${doc.data().rank}</td>
-          <td class="prdct-tbl" >${doc.data().discountPrice}</td>
-          <td class="prdct-tbl" ><a href="${url}" id="${imageName}">${imageName}</a>
-          <td class="prdct-tbl" ><a href="javascript:void(0)" class="edit fa fa-edit" id="${doc.id}"></a> | <a href="javascript:void(0)" class="del fa fa-trash" id="${doc.id}"></a></td>
+          <td class="prdct-tbl" style="width:100px">${doc.sku}</td>
+					<td class="prdct-tbl" style="width:160px">${doc.name}</td>
+					<td class="prdct-tbl" style="width:160px">${doc.category}</td>
+					<td class="prdct-tbl" style="width:100px">${doc.brand}</td>
+					<td class="prdct-tbl" style="width:100px">${doc.price}</td>
+          <td class="prdct-tbl" style="width:50px">${doc.discount}</td>
+          <td class="prdct-tbl" style="width:30px">${doc.percent}</td>
+          <td class="prdct-tbl" style="width:50px">${doc.hot}</td>
+          <td class="prdct-tbl" style="width:50px">${doc.latest}</td>
+          <td class="prdct-tbl" style="width:20px">${doc.rank}</td>
+          <td class="prdct-tbl" style="width:100px">${doc.discPrice}</td>
+          <td class="prdct-tbl" style="width:100px"><a href="#" class="imgLink" onClick="openImage("${imageName}");" id="${imageName}">${imageName}</a>
+          <td class="prdct-tbl" style="width:80px"><a href="javascript:void(0)" class="edit fa fa-edit" id="${doc.id}"></a> | <a href="javascript:void(0)" class="del fa fa-trash" id="${doc.id}"></a></td>
           </tr>`);
 
     $(".del").click((e) => {
       e.stopImmediatePropagation();
-      z.style.display = "none";
-      y.style.display = "none";
-      x.style.display = "block";
+      debugger;
+      $("#apa").css('display', 'none');
+      $("#dpa").css('display', 'none');
+      $("#upa").css('display', 'block');
       var id = e.target.id;
       db.collection("products").doc(id).delete();
+      var delIndex = dbProducts.findIndex(x=> x.id == id);
+      dbProducts.splice(delIndex,1)
+      $("#"+id).remove();
       resetForm();
     });
 
 
     $(".edit").click((e) => {
       e.stopImmediatePropagation();
-      z.style.display = "none";
-      y.style.display = "none";
+      debugger;
+      $('#apa').css('display', 'none');
+      $('#upa').css('display', 'none');
+      $('#dpa').css('display', 'none');
       var id = e.target.id;
-      db.collection("products")
-        .doc(id)
-        .get()
-        .then((doc) => {
-          $('#sku').val(doc.data().sku),
-          $("#productName").val(doc.data().name);
-          $("#category").val(doc.data().category);
-          $("#brand").val(doc.data().brand);
-          $("#price").val(doc.data().price);
-          $("#discount").prop("checked", doc.data().discount);
-          $("#discountPercent").val(doc.data().percent);
-          $("#hot").prop("checked", doc.data().hot);
-          $("#latest").prop("checked", doc.data().latest);
-          $("#rank").val(doc.data().rank);
-          $("#discountPrice").val(doc.data().discountPrice);
-          $("#imageName").val(doc.data().imageName);
-          $("#id_edit").val(doc.id);
-        });
-      add.style.display = "none";
-      update.style.display = "block";
-      cancel.style.display = "block";
+      var doc = dbProducts.find((x) => x.id == id);
+      $("#sku").val(doc.sku);
+      $("#productName").val(doc.name);
+      $("#category").val(doc.category);
+      $("#brand").val(doc.brand);
+      $("#price").val(doc.price);
+      $("#discount").prop("checked", doc.discount);
+      $("#discountPercent").val(doc.percent);
+      $("#hot").prop("checked", doc.hot);
+      $("#latest").prop("checked", doc.latest);
+      $("#rank").val(doc.rank);
+      $("#discountPrice").val(doc.discPrice);
+      $("#imageName").val(doc.imageName);
+      $("#id_edit").val(doc.id);
+      $('#add').css('display', 'none');
+      $('#update').css('display', 'block');
+      $('#cancel').css('display', 'block');
     });
 
-    function getFileUrl(filename) {
-      if (!(filename == undefined)) {
-        //console.log("filename is: " + filename);
-        var storage = firebase.storage().ref(filename);
-        storage
-            .getDownloadURL()
-            .then(function (url) {
-              //console.log(url);
-              //console.log("filename: " + filename);
-              $("#" + filename).attr("href", url);
-              $("#" + filename).attr("target", "_blank");
-            })
-            .catch(function (error) {
-              console.log("error encountered");
-            });
-        //create a storage reference
-       
+    $(".imgLink").click((e) => {
+      e.stopImmediatePropagation();
+      var fileName = e.target.id;
+      if (fileName != undefined && fileName != "" && fileName.length > 0) {
+        getFileUrl(fileName);
       }
-    }
+    });
+    
+
+}
+
+
+function getFileUrl(fileName) {
+  if (!(fileName == undefined)) {
+    //console.log("fileName is: " + fileName);
+    var storage = firebase.storage().ref(fileName);
+    storage
+      .getDownloadURL()
+      .then(function (url) {
+        //console.log(url);
+        //console.log("filename: " + filename);
+        window.open(url, "_blank");
+      })
+      .catch(function (error) {
+        console.log("error encountered");
+      });
+    //create a storage reference
+  }
 }
 
 function setCategoryOptions(doc) {
   $("#category").append(
-    ` <option value="${doc.data().category}">${doc.data().category}</option>`
+    ` <option value="${doc.name}">${doc.name}</option>`
   );
 }
 
 function setBrandOptions(doc) {
     $("#brand").append(
-      ` <option value="${doc.data().brand}">${doc.data().brand}</option>`
+      ` <option value="${doc.name}">${doc.name}</option>`
     );
   }
 
 $("#cancel").on("click", (e) => {
   e.stopImmediatePropagation();
-  z.style.display = "none";
-  y.style.display = "none";
-  x.style.display = "none";
+  $('#apa').css('display', 'none');
+  $('#upa').css('display', 'none');
+  $('#dpa').css('display', 'none');
   resetForm()
 });
 
-$('#update').on('click', () => {
-	      z.style.display = 'none';
-        x.style.display = 'none';
-        y.style.display = 'block';
-        var id = $('#id_edit').val();
-    db.collection('products').doc(id).set({
-        sku: $('#sku').val(),
-        name: $('#productName').val(),
-        category: $('#category').val(),
-        brand: $('#brand').val(),
-        price: $('#price').val(),
-        discount: $('#discount').is(":checked"),
-        percent: $('#discountPercent').val(),
-        hot: $('#hot').is(":checked"),
-        latest: $('#latest').is(":checked"),
-        rank: $('#rank').val(),
-        discountPrice: $('#discountPrice').val(),
-        imageName: $('#sku').val(),
+function updateProduct() {
+  debugger;
+  $("#apa").css("display", "none");
+  $("#dpa").css("display", "none");
 
-    }, {
-        merge: true
-    });
-    
-    uploadFile($('#sku').val());
-    setTimeout(function() {
-        y.remove();
-    }, 5000);
-    resetForm();
-});
-
-add_product.on("submit", (e) => {
-  e.preventDefault();
-  x.style.display = "none";
-  y.style.display = "none";
-  z.style.display = "block";
-  addProduct();
-  resetForm();
-});
-
-function addProduct() {
-  db.collection("products").add({
-    name: $("#sku").val(),
-    name: $("#productName").val(),
-    category: $("#category").val(),
-    brand: $("#brand").val(),
-    price: $("#price").val(),
-    discount: $("#discount").is(":checked"),
-    percent: $("#discountPercent").val(),
-    hot: $("#hot").is(":checked"),
-    latest: $("#latest").is(":checked"),
-    rank: $("#rank").val(),
-    discountPrice: $("#discountPrice").val(),
-    imageName: $("#sku").val(),
-    added_at: Date(),
-  });
+  var id = $("#id_edit").val();
+  var updateIndex = dbProducts.findIndex((x) => x.id == id);
   uploadFile($("#sku").val());
+  debugger;
+  var updatedPrd = new product(
+    id,
+    $("#sku").val(),
+    $("#productName").val(),
+    $("#category").val(),
+    $("#brand").val(),
+    parseInt($("#price").val()),
+    $("#discount").is(":checked"),
+    parseInt($("#discountPercent").val()),
+    $("#hot").is(":checked"),
+    $("#latest").is(":checked"),
+    $("#rank").val(),
+    parseInt($("#discountPrice").val()),
+    $("#sku").val()
+  );
+
+  db.collection("products").doc(id).set(
+    {
+      sku: updatedPrd.sku,
+      name: updatedPrd.name,
+      category: updatedPrd.category,
+      brand: updatedPrd.brand,
+      price: updatedPrd.price,
+      discount: updatedPrd.discount,
+      percent: updatedPrd.percent,
+      hot: updatedPrd.hot,
+      latest: updatedPrd.latest,
+      rank: updatedPrd.rank,
+      discountPrice: updatedPrd.discPrice,
+      imageName: updatedPrd.imageName,
+    },
+    {
+      merge: true,
+    }
+  );
+
+  dbProducts.splice(updateIndex, 1, updatedPrd);
+  $("#upa").css("display", "block");
+  setTimeout(function () {
+    $("#upa").remove();
+  }, 5000);
+
+  resetForm();
+  debugger;
+  $(id).html(`<tr class="prdct-tbl" id="${id}">
+  <td class="prdct-tbl" style="width:100px">${updatedPrd.sku}</td>
+  <td class="prdct-tbl" style="width:160px">${updatedPrd.name}</td>
+  <td class="prdct-tbl" style="width:160px">${updatedPrd.category}</td>
+  <td class="prdct-tbl" style="width:100px">${updatedPrd.brand}</td>
+  <td class="prdct-tbl" style="width:100px">${updatedPrd.price}</td>
+  <td class="prdct-tbl" style="width:50px">${updatedPrd.discount}</td>
+  <td class="prdct-tbl" style="width:30px">${updatedPrd.percent}</td>
+  <td class="prdct-tbl" style="width:50px">${updatedPrd.hot}</td>
+  <td class="prdct-tbl" style="width:50px">${updatedPrd.latest}</td>
+  <td class="prdct-tbl" style="width:20px">${updatedPrd.rank}</td>
+  <td class="prdct-tbl" style="width:100px">${updatedPrd.discPrice}</td>
+  <td class="prdct-tbl" style="width:100px"><a href="${url}" id="${imageName}">${imageName}</a>
+  <td class="prdct-tbl" style="width:80px"><a href="javascript:void(0)" class="edit fa fa-edit" id="${id}"></a> | <a href="javascript:void(0)" class="del fa fa-trash" id="${doc.id}"></a></td>
+  </tr>`);
+}
+
+function addProduct(){
+  $('#apa').css('display', 'none');
+  $('#upa').css('display', 'none');
+  $('#dpa').css('display', 'block');
+  addNewProduct();
+  resetForm();
+};
+
+function addNewProduct() {
+
+  var newProduct = new product(
+    $("#sku").val(),
+    $("#productName").val(),
+    $("#category").val(),
+    $("#brand").val(),
+    parseInt($("#price").val()),
+    $("#discount").is(":checked"),
+    parseInt($("#discountPercent").val()),
+    $("#hot").is(":checked"),
+    $("#latest").is(":checked"),
+    $("#rank").val(),
+    parseInt($("#discountPrice").val()),
+    $("#sku").val()
+  );
+  db.collection("products").add(
+    {
+      sku: updatedPrd.sku,
+      name: updatedPrd.name,
+      category: updatedPrd.category,
+      brand: updatedPrd.brand,
+      price: updatedPrd.price,
+      discount: updatedPrd.discount,
+      percent: updatedPrd.percent,
+      hot: updatedPrd.hot,
+      latest: updatedPrd.latest,
+      rank: updatedPrd.rank,
+      discountPrice: updatedPrd.discPrice,
+      imageName: updatedPrd.imageName,
+      added_at: Date(),
+  });
+
+  dbProducts.push(newProduct)
+  uploadFile($("#sku").val());
+  $('#apa').css('display', 'block');
+  setTimeout(function () {
+  $('#apa').remove();
+  }, 5000);
 }
 
 function resetForm() {
@@ -220,33 +299,21 @@ function resetForm() {
   $("#rank").val("");
   $("#discountPrice").val("");
   $("#files").val("");
-  add.style.display = "block";
-  update.style.display = "none";
-  cancel.style.display = "none";
+  $('#add').css('display', 'block');
+  $('#update').css('display', 'none');
+  $('#cancel').css('display', 'none');
+  $('#apa').css('display', 'block');
+  $('#upa').css('display', 'block');
+  $('#dpa').css('display', 'block');
 }
 
-db.collection("products").onSnapshot((snapshot) => {
-  let changes = snapshot.docChanges();
-    changes.forEach((change) => {
-      if (change.type == "added") {
-        fetchAllproducts(change.doc);
-      } else if (change.type == "removed") {
-        var id = change.doc.id;
-        $("#" + id).remove();
-      } else if (change.type == "modified") {
-        var id = change.doc.id;
-        $("#" + id).remove();
-        fetchAllproducts(change.doc);
-      }
-    });
-});
 
- document.getElementById("files").addEventListener("change", function (e) {
-   files = e.target.files;
-   for (let i = 0; i < files.length; i++) {
-     //console.log(files[i]);
-   }
- });
+ $("#files").change(function(e){
+  files = e.target.files;
+  for (let i = 0; i < files.length; i++) {
+    //console.log(files[i]);
+  }
+});
 
 function uploadFile(fileName){
   
@@ -273,9 +340,9 @@ function uploadFile(fileName){
       );
     }
   } else {
-    f.style.display = "block";
+    $('#showFileAlert').css('display', 'block');
     setTimeout(function() {
-      f.remove();
+      ("#showFileAlert").remove();
   }, 5000);
   }
 }

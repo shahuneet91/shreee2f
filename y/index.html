@@ -5,65 +5,36 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
   <title>Shree Electronics & Furniture</title>
-
-  <!-- Google font -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet" />
-
-  <!-- Bootstrap -->
   <link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
-
-  <!-- Slick -->
   <link type="text/css" rel="stylesheet" href="./css/slick.css" />
   <link type="text/css" rel="stylesheet" href="./css/slick-theme.css" />
-
-  <!-- nouislider -->
   <link type="text/css" rel="stylesheet" href="./css/nouislider.min.css" />
-
-  <!-- Font Awesome Icon -->
   <link rel="stylesheet" href="./css/font-awesome.min.css" />
-
-  <!-- Custom stlylesheet -->
   <link type="text/css" rel="stylesheet" href="./css/style.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="./css/footer.css" />
+  <link type="text/css" rel="stylesheet" href="./css/custom.css" />
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+  <script type="text/javascript" src="js/fireBaseConfig.js"></script>
+  <script type="text/javascript" src="js/custom.js"></script>
+  <script>
+    $(function () {
+      $("#header").load("index-header.html");
+      $("#footer").load("footer.html");
+      $("#filter-section").load("filter-section.html");
+    });
+  </script>
 </head>
 
 <body>
-  <!-- HEADER -->
   <header>
-    <!-- MAIN HEADER -->
     <div id="header">
-      <!-- container -->
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <!-- LOGO -->
-          <div class="col-md-3">
-            <div class="header-logo">
-              <a href="#" class="logo">
-                <img src="./img/shree-logo-blk.png" alt="" />
-              </a>
-            </div>
-          </div>
-          <!-- /LOGO -->
-
-          <!-- SEARCH BAR -->
-          <div class="col-md-6">
-            <div class="header-search">
-              <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10">
-                <input class="input inputSearch" placeholder="Search here" style="border-radius: 25px;" id="ipSearch" />
-              </div>
-            </div>
-            <!-- /SEARCH BAR -->
-          </div>
-          <!-- row -->
-        </div>
-        <!-- container -->
-      </div>
-      <!-- /MAIN HEADER -->
+    </div>
   </header>
   <!-- /HEADER -->
 
@@ -100,71 +71,7 @@
 
         <div id="aside" class="col-md-3">
           <!-- /aside Widget -->
-          <div class="aside">
-            <div class="row">
-            <a data-toggle="collapse" class="col-md-8" href="#filter">
-              <h4 class="aside-title">Filter Products</h4>
-            </a>
-            <a href="#clearFilter" id="clearFilter" class="col-md-3 home" style="float: right;">
-              <h8 class="aside-title home">Clear</h8>
-            </a>
-            </div>
-            <div id="filter">
-              <!-- /aside Widget -->
-
-              <!-- aside Widget -->
-              <div class="aside">
-                <a data-toggle="collapse" href="#priceFilter">
-                  <h4 class="aside-title">Price</h4>
-                </a>
-                <div class="price-filter" id="priceFilter">
-                  <div id="price-slider"></div>
-                  <div class="input-number price-min">
-                    <input id="price-min" type="number" value="0" />
-                    <span class="qty-up">+</span>
-                    <span class="qty-down">-</span>
-                  </div>
-                  <span>-</span>
-                  <div class="input-number price-max">
-                    <input id="price-max" type="number" value="500000" />
-                    <span class="qty-up">+</span>
-                    <span class="qty-down">-</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- /aside Widget -->
-
-              <!-- aside Widget -->
-              <div class="aside">
-                <a data-toggle="collapse" href="#categoryFilter">
-                  <h4 class="aside-title">Categories</h4>
-                </a>
-                <div class="checkbox-filter" id="categoryFilter"></div>
-              </div>
-              <!-- /aside Widget -->
-
-
-              <!-- aside Widget -->
-              <div class="aside">
-                <a data-toggle="collapse" href="#brandFilter">
-                  <h4 class="aside-title">Brand</h4>
-                </a>
-                <div class="checkbox-filter" id="brandFilter"></div>
-              </div>
-
-              <!-- /aside Widget -->
-
-              <!-- aside Widget -->
-
-              <div class="aside">
-                <a data-toggle="collapse" href="#topSelling">
-                  <h4 class="aside-title">Top selling</h4>
-                </a>
-                <div class="product-widget" id="topSelling"></div>
-              </div>
-              <!-- /aside Widget -->
-            </div>
+          <div id="filter-section" class="aside">
           </div>
         </div>
         <!-- /ASIDE -->
@@ -204,7 +111,7 @@
           <!-- store bottom filter -->
           <div class="store-filter clearfix">
             <span class="store-qty" id="productQty"></span>
-            
+
             <ul class="store-pagination" id="pagination">
             </ul>
           </div>
@@ -219,99 +126,10 @@
   <!-- /SECTION -->
 
   <!-- FOOTER -->
-  <footer id="footer">
-    <!-- top footer -->
-    <div class="section">
-      <!-- container -->
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <div class="col-md-5 col-xs-6">
-            <div class="footer">
-              <h3 class="footer-title">About Us</h3>
-              <p>
-                We are Retail and Wholesale dealers of variety of Electronics and Furniture.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-xs-6">
-            <div class="footer">
-
-              <div class="col-md-4 col-xs-6">
-                <h3 class="footer-title">Categories</h3>
-                <ul class="footer-links">
-                  <li class="linkFilter" class="active">
-                  <li><a class="hot" href="#">Hot Deals</a></li>
-                  <li><a class="linkFilter" href="#">Laptops</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4 col-xs-6">
-                <h3 class="footer-title" style="visibility:hidden;">a</h3>
-                <ul class="footer-links">
-                  <li><a class="linkFilter" href="#">Smartphones</a></li>
-                  <li><a class="linkFilter" href="#">Apple</a></li>
-                  <li><a class="linkFilter" href="#">Samsung</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="clearfix visible-xs"></div>
-
-          <div class="row">
-            <div class="col-md-3 col-xs-6">
-              <div class="footer">
-                <h3 class="footer-title">Contact Us</h3>
-                <ul class="footer-links">
-                  <li>
-                    <a href="#"><i class="fa fa-map-marker"></i>Agarwal Tower. Opp Central Bank, GT Road. Etah</a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-phone"></i>+919045493049</a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-envelope-o"></i>rahul.agrawal689@gmail.com</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-          <!-- /row -->
-        </div>
-        <!-- /container -->
-      </div>
-      <!-- /top footer -->
-  </footer>
+  <div id="footer" class="footer-div"></div>
   <!-- /FOOTER -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
-    
-    <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-            apiKey: "AIzaSyCpr3eDyk7yg6JmOnpNR8CEt5wOmTsNU2Y",
-            authDomain: "shreeetof.firebaseapp.com",
-            databaseURL: "https://shreeetof-default-rtdb.firebaseio.com",
-            projectId: "shreeetof",
-            storageBucket: "shreeetof.appspot.com",
-            messagingSenderId: "410252514308",
-            appId: "1:410252514308:web:917f22e7ad2af870ed9151"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        var db = firebase.firestore();
-        db.settings({ timestampsInSnapshots: true });
-
-    </script>
-
-</script>
+  </script>
   <!-- jQuery Plugins -->
   <script src="./js/jquery.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
@@ -319,10 +137,6 @@
   <script src="./js/nouislider.min.js"></script>
   <script src="./js/jquery.zoom.min.js"></script>
   <script src="./js/main.js"></script>
-  <script src="./js/custom.js"></script>
   <script src="./js/index.js"></script>
-
 </body>
-
-
 </html>

@@ -1,0 +1,97 @@
+<div id="header" class="main-header"></div>
+</br>
+<br>
+<div class="container row center-button" style="margin-bottom: 1% ;">
+    <div class="col-md-5"
+        style="border: 2px dashed rgb(102, 0, 51) !important;border-radius: 15px !important;padding: 1% 1% 1% 2% !important;">
+        <form id="add-category">
+            <div class="form-margin mb-4">
+                <div class="row">
+                    <div class="form-outline col-6">
+                        <input type="text" placeholder="Category" name="category" id="category" class="form-control"
+                            required />
+                    </div>
+
+                    <div class="col-6">
+                        <div class="row">
+                            <input type="hidden" id="id_edit_cat" name="id-edit" class="form-control" />
+                            <button type="submit" id="addCat" class="btn btn-primary offset-md-1 col-md-6">Add</button>
+                            <button type="button" id="updateCat" class="btn btn-info offset-md-1 col-md-5"
+                                style="display: none;">Update</button>
+                            <button type="button" id="cancelCat" class="btn btn-info offset-md-1 col-md-5"
+                                style="display: none;  margin-right: auto;">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <div class="col-12">
+            <div class="alert alert-success" role="alert" style="display: none;" id="catAddedMsg">
+                Added Category Successfully!!
+            </div>
+            <div class="alert alert-danger" role="alert" style="display: none;" id="catDeleteMsg">
+                Deleted Category Successfully!!
+            </div>
+            <div class="alert alert-info" role="alert" style="display: none;" id="catUpdateMsg">
+                Updated Category Successfully!!
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 75%;" scope="col">Name</th>
+                        <th style="text-align: center !important;" scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="categories-table" class="table-scroll table-scroll-master">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="offset-md-2 col-md-5"
+        style="border: 2px dashed rgb(102, 0, 51) !important; border-radius:15px !important;padding: 1% 1% 1% 2% !important;">
+        <form id="add-brand">
+            <div class="form-margin mb-4">
+                <div class="row">
+                    <div class="form-outline col-6">
+                        <input type="text" placeholder="Brand" name="brand" id="brand" class="form-control" required />
+                    </div>
+
+                    <div class="col-6">
+                        <div class="row">
+                            <input type="hidden" id="id_edit_brand" name="id-edit" class="form-control" />
+                            <button type="submit" id="addBrand"
+                                class="btn btn-primary offset-md-1 col-md-6">Add</button>
+                            <button type="button" id="updateBrand" class="btn btn-info offset-md-1 col-md-5"
+                                style="display: none;">Update</button>
+                            <button type="button" id="cancelBrand" class="btn btn-info offset-md-1 col-md-5"
+                                style="display: none;  margin-right: auto;">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <div class="col-12">
+            <div class="alert alert-success" role="alert" style="display: none;" id="brandAddedMsg">
+                Added Brand Successfully!!
+            </div>
+            <div class="alert alert-danger" role="alert" style="display: none;" id="brandDeletedMsg">
+                Deleted Brand Successfully!!
+            </div>
+            <div class="alert alert-info" role="alert" style="display: none;" id="brandUpdatedMsg">
+                Updated Brand Successfully!!
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 75%;" scope="col">Name</th>
+                        <th style="text-align: center !important;" scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="brands-table" class="table-scroll table-scroll-master">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
