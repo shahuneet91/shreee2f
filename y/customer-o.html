@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/montserrat-font.css">
 	<link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 	<!-- Main Style Css -->
-    <link rel="stylesheet" href="./css/bill-new.css"/>
+    <link rel="stylesheet" href="./css/customer-o.css"/>
 </head>
 <body class="form-v10">
 	<div class="page-content">
@@ -34,7 +34,16 @@
 					</div> -->
 					
 					<div class="form-group">
-						<div class="form-row form-row-1-prefix">
+						<div class="form-row form-row-3">
+							<select name="employees required">
+							    <option value="trainee">Male</option>
+							    <option value="colleague">Female</option>
+							</select>
+							<span class="select-btn">
+							  	<i class="zmdi zmdi-chevron-down"></i>
+							</span>
+						</div>
+						<div class="form-row form-row-4">
 							<select name="title" required>
 								<option class="option" value="businessman">Mr.</option>
 								<option class="option" value="reporter">Ms.</option>
@@ -50,71 +59,15 @@
 							<input type="text" name="first_name" id="first_name" class="input-text" placeholder="First Name" required>
 						</div>
 					</div>
+					<div class="form-group form-group-name">
 						<div class="form-row">
 							<input type="text" name="last_name" id="last_name" class="input-text" placeholder="Last Name" required>
 						</div>
-					<div class="form-row">
-						<input type="text" name="street" class="street" id="street" placeholder="Street" required>
-					</div>
-					<div class="form-row">
-						<input type="text" name="additional" class="additional" id="add2" placeholder="Address Line 2" required>
-					</div>
-					<div class="form-row">
-						<input type="text" name="additional" class="additional" id="add3" placeholder="Address Line 3">
-					</div>
-					
-					<div class="form-group">
-						<div class="form-row form-row-1 form-row-add">
-							<input type="text" name="state" class="state" id="state" placeholder="State" required>
-						</div>
-						<div class="form-row form-row-2 form-row-add">
-							<input type="text" name="zip" class="zip" id="zip" placeholder="Zip" required>
-						</div>
-						<div class="form-row form-row-3 form-row-add">
-							<select name="country">
-								<option value="Vietnam">India</option>
-								<option value="Malaysia">United States</option>
-								<option value="India">Nepal</option>
-							</select>
-							<span class="select-btn select-btn-cntry">
-								  <i class="zmdi zmdi-chevron-down"></i>
-							</span>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="form-row form-row-1-phone" >
-							<input type="text" name="code" class="code phone-code" id="code" value="+91" placeholder="Code +" required>
-						</div>
-						<div class="form-row form-row-2-phone">
-							<input type="text" name="phone" class="phone" id="phone" placeholder="Phone Number"  maxlength="10" pattern="[0-9]" required>
-						</div>
-					</div>
-					<div class="form-row">
-						<input type="text" name="your_email" id="your_email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Your Email">
 					</div>
 					
 				</div>
 				<div class="form-right">
-					<div class="form-group">
-						<div class="col-md-3">
-							<h2>Bill Details</h2>
-						</div>
-						<div>
-							<input type="text" name="zip" class="zip" id="zip" placeholder="Zip Code" required>
-						</div>
-						<div class="form-row form-row-3">
-							<select name="country">
-								<option value="Vietnam">India</option>
-								<option value="Malaysia">United States</option>
-								<option value="India">Nepal</option>
-							</select>
-							<span class="select-btn">
-								  <i class="zmdi zmdi-chevron-down"></i>
-							</span>
-						</div>
-					</div>
-
-
+					<h2>Contact Details</h2>
 					<div class="form-row">
 						<input type="text" name="street" class="street" id="street" placeholder="Street" required>
 					</div>

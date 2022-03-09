@@ -1,7 +1,7 @@
-/* 
+ 
 html, body {
   overflow: hidden;
-} */
+}
 
 .form-margin {
   margin: 0% 1% 0% 1%;
@@ -91,7 +91,7 @@ tr {
 }
 
 .product-table {
-  /*border: 2px dashed rgb(102, 0, 51);*/
+  /*border: 2px dashed #723f45;*/
   margin-top: 2%;
   padding: 1% 0 0 0;
   border-radius: 15px !important;
@@ -112,7 +112,7 @@ tr {
   border: 1px dashed black;
 }
 #product-table > table > thead {
-  background-color:rgb(69, 133, 117);
+  background-color:#723f45;
   /* border: 2px dashed rgb(0, 102, 102); */
   box-shadow: 20px 20px 50px grey;
   margin-bottom: 50px;
@@ -123,11 +123,11 @@ tr {
 }
 
 .add-product {
-  border: 1px dashed rgb(102, 0, 51);
+  border: 1px dashed #723f45;
   padding: 2% 1% 2% 2%;
   border-radius: 15px !important;
   margin-top: 1%;
-  background-color: rgb(69, 133, 117);
+  background-color: #723f45;
 }
 
 .add-product-input{
@@ -138,7 +138,7 @@ tr {
   align-items: center;
   padding: 0.5%;
   margin: 1% 0% 0% 0%;
-  background-color: rgb(102, 0, 51);
+  background-color: #723f45;
   color: white !important;
   box-shadow: 20px 20px 50px grey;
 }
@@ -155,12 +155,12 @@ tr {
   padding-right: 0%;
   padding-left: 0%;
   overflow-x: hidden;
-  margin: 0 0.5% 0 0.5%;
+  margin: 0;
 }
 
 .bill-title {
-  border-bottom: 1px dashed rgb(102, 0, 51);
-  background-color: rgb(69, 133, 117);
+  border-bottom: 1px dashed #723f45;
+  background-color: #723f45;
   box-shadow: 20px 20px 50px grey;
   color: white;
   margin-bottom: 0;
@@ -191,29 +191,47 @@ tr {
 }
 
 .bill-total {
-  border: 1px solid #034f84;
-  border-top: none;
+  border-top: 1px solid #723f45;
   margin-bottom: 0;
-  background-color: rgb(102, 0, 51);
+  background-color: #723f45;
   box-shadow: 20px 20px 50px grey;
   color: white;
 }
+
+
+.bill-total-head {
+  border-top: 1px dashed #723f45;
+  padding-top: 1%;
+}
+
 .bill-total > li {
   margin: 0% 0.5% 0% 0.5%;
 }
 
 .bill-print-save{
-  background-color: rgb(69, 133, 117);
-  box-shadow: 20px 0px 50px black;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px grey;
+  padding: 0%;
+  width: 30px;
+  
+}
+
+.bill-print-save:hover{
+  background-color: #723f45;
+  border: 1px solid white;
+}
+
+.btn-action {
+  width: 100%;
 }
 
 .bill-customer {
   margin: 5px 0% 2px 0%;
   padding-left: 5%;
   border-top: none;
-  background-color: rgb(69, 133, 117);
+  background-color: #723f45;
   box-shadow: 20px 20px 50px grey;
-  border: 1px dashed rgb(102, 0, 51);;
+  border: 1px dashed #723f45;;
 }
 .bill-customer > li {
   margin: 0% 0.5% 0% 0.5%;
@@ -247,11 +265,14 @@ ul.no-bullets {
   width: 19px;
   margin-right: 33%;
   margin-top: 0.5%;
+  background-color: #723f45;
 }
 
 .btnAddIcon {
   width: 100%;
 }
+
+
 
 .popup {
   position: relative;
@@ -347,11 +368,11 @@ ul.no-bullets {
 }
 
 .bill-footer {
-  /* border: 1px dashed rgb(102, 0, 51); */
+  /* border: 1px dashed #723f45; */
   padding: 0 0 0 3%;
   align-items: center;
   border-top: none;
-  background-color: #4835d4;
+  background-color: #723f45;
   box-shadow: 20px 20px 50px grey;
   color: white;
 }
@@ -360,15 +381,6 @@ ul.no-bullets {
   float: left;
 }
 
-.btn-action {
-  width: 40%;
-}
-
-.div-btn-action {
-  padding: 0;
-  text-align: center;
-  
-}
 
 .bill-row{
   height: 40px;
@@ -437,16 +449,43 @@ ul.no-bullets {
 	-ms-align-items: center;
 	-moz-align-items: center;
 	-webkit-align-items: center;
-	background-image: -moz-linear-gradient( 136deg, rgb(149,153,226) 0%, rgb(139,198,236) 100%);
-  background-image: -webkit-linear-gradient( 136deg, rgb(149,153,226) 0%, rgb(139,198,236) 100%);
-  background-image: -ms-linear-gradient( 136deg, rgb(149,153,226) 0%, rgb(139,198,236) 100%);
+	background-image: -moz-linear-gradient( 136deg, #723f45 0%, rgb(249 246 246)  100%);
+  background-image: -webkit-linear-gradient( 136deg, #723f45 0%, rgb(249 246 246)  100%);
+  background-image: -ms-linear-gradient( 136deg, #723f45 0%, rgb(249 246 246)  100%);
   position: relative;
   border: none !important;
+}
+
+.billSelect{
+  padding: 1% 0%;
 }
 
 
 .bill-input-left{
   width: 100%;
+}
+
+
+.bill-input-invoice{
+  width: 70% !important;
+}
+
+
+.bill-input-invoice-search{
+  background-color: transparent;
+  border: none;
+  padding: 0% 0% 0% 0%;
+  vertical-align: middle !important;
+  color: #723f45;
+  display: inline-block;
+  margin-left: -100%;
+  z-index: 1;
+  line-height: 1;
+}
+
+.bill-input-invoice-search:hover{
+  color: white;
+  background-color: #723f45;
 }
 
 .bill-input-left-1{
@@ -467,13 +506,28 @@ ul.no-bullets {
 
 
 .bill-input-right{
-  color: #4835d4;
+  color: #723f45;
   background-color: inherit;
   border: none;
   border-bottom: 1px solid;
   border-bottom-color: rgba(255, 255, 255, 0.3);
   width: 100%;
   padding: 1% 0 1% 1%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+
+.bill-input-invoice{
+  color: #723f45;
+  background-color: inherit;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid #723f45;
+  width: 30%;
+  padding: 0% 1% 0% 1%;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   outline: none;
@@ -486,12 +540,12 @@ ul.no-bullets {
 
 .bill-input-right:focus {
   outline: inherit;
-  border-bottom-color:  #4835d4;
+  border-bottom-color:  #723f45;
 }
 
 .bill-form-left{
   padding: 1%;
-  background: #4835d4;
+  background: #723f45;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -515,15 +569,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 table thead tr {
   text-align: center;
-  background-color: #4835d4;
+  background-color: #723f45;
   color: white;
 }
 .table-total{
   text-align: center;
+  background-color: white;
+  color: #723f45;
+  border-bottom: none;
+  border-color: white;
 }
 
 table thead tr:nth-child(1) th{
-  padding: 0%;
+  padding: 0;
+}
+
+.bill-total-th{
+  padding: 0% 0 0.5% 0 !important;
 }
 
 table tbody tr td:nth-child(2) {
@@ -546,33 +608,33 @@ table tbody { height:300px; overflow-y:scroll; display:block; }
 table thead { display:block; }
 
 table tbody tr:nth-child(even) {
-  background-image: -moz-linear-gradient( 136deg, rgb(149,153,226) 0%, rgb(139,198,236) 100%);
-  background-image: -webkit-linear-gradient( 136deg, rgb(149,153,226) 0%, rgb(139,198,236) 100%);
-  background-image: -ms-linear-gradient( 136deg, rgb(149,153,226) 0%, rgb(139,198,236) 100%);
+  background-image: -moz-linear-gradient( 136deg, #723f45 0%, rgb(249 246 246)  100%);
+  background-image: -webkit-linear-gradient( 136deg, #723f45 0%, rgb(249 246 246)  100%);
+  background-image: -ms-linear-gradient( 136deg, #723f45 0%, rgb(249 246 246)  100%);
+  box-shadow: 20px 20px 50px grey;
+  border-color: transparent;
+  color: #723f45;
+}
+table tbody tr:nth-child(odd) {
+  background-color: white;
+  background-image: -moz-linear-gradient( 136deg, rgb(249 246 246) , #723f45 100%);
+  background-image: -webkit-linear-gradient( 136deg, rgb(249 246 246) , #723f45 100%);
+  background-image: -ms-linear-gradient( 136deg, rgb(249 246 246) ,  #723f45 100%);
   box-shadow: 20px 20px 50px grey;
   border-color: transparent;
   color: white;
 }
-table tbody tr:nth-child(odd) {
-  background-color: white;
-  background-image: -moz-linear-gradient( 136deg, rgb(139,198,236), rgb(149,153,226) 100%);
-  background-image: -webkit-linear-gradient( 136deg, rgb(139,198,236), rgb(149,153,226) 100%);
-  background-image: -ms-linear-gradient( 136deg, rgb(139,198,236),  rgb(149,153,226) 100%);
-  box-shadow: 20px 20px 50px grey;
-  border-color: transparent;
-  color:#4835d4;
-}
 
 .select2-container--default .select2-selection--single{
   background-color: inherit !important;
-  border: 1px solid #4835d4 !important;
+  border: 1px solid #723f45 !important;
 }
 
 .select2-container--default .select2-results>.select2-results__options,
 .select2-search--dropdown{
-  background-image: -moz-linear-gradient( 136deg, rgb(149,153,226) 0%, rgb(139,198,236) 100%);
-  background-image: -webkit-linear-gradient( 136deg, rgb(149,153,226) 0%, rgb(139,198,236) 100%);
-  background-image: -ms-linear-gradient( 136deg, rgb(149,153,226) 0%, rgb(139,198,236) 100%);
+  background-image: -moz-linear-gradient( 136deg, #723f45 0%, rgb(249 246 246)  100%);
+  background-image: -webkit-linear-gradient( 136deg, #723f45 0%, rgb(249 246 246)  100%);
+  background-image: -ms-linear-gradient( 136deg, #723f45 0%, rgb(249 246 246)  100%);
   box-shadow: 20px 20px 50px grey;
   border-color: transparent;
   color: white;
@@ -580,12 +642,12 @@ table tbody tr:nth-child(odd) {
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: white;
-  background-image: -moz-linear-gradient( 136deg, rgb(139,198,236), rgb(149,153,226) 100%);
-  background-image: -webkit-linear-gradient( 136deg, rgb(139,198,236), rgb(149,153,226) 100%);
-  background-image: -ms-linear-gradient( 136deg, rgb(139,198,236),  rgb(149,153,226) 100%);
+  background-image: -moz-linear-gradient( 136deg, rgb(249 246 246) , #723f45 100%);
+  background-image: -webkit-linear-gradient( 136deg, rgb(249 246 246) , #723f45 100%);
+  background-image: -ms-linear-gradient( 136deg, rgb(249 246 246) ,  #723f45 100%);
   box-shadow: 20px 20px 50px grey;
   border-color: transparent;
-  color:#4835d4;
+  color:#723f45;
 }
 
 

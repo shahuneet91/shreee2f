@@ -2,30 +2,48 @@
 
     <div class="bill-form bill-border row">
         <div class="bill-form-left col-md-3">
-            <h6 style="color:white; font-family: 'Montserrat', sans-serif;">Shree Electronics and Furniture</h6>
             <h6 style="color:white;">Customer Details</h6>
-            <input type="text" class="bill-input-left" id="companyName" placeholder="First Name"/>
+            <input type="text" class="bill-input-left" id="customerId" placeholder="Customer ID"/>
             <input type="text" class="bill-input-left" id="fName" placeholder="First Name" required/>
-            <input type="text" class="bill-input-left" id="fName" placeholder="Last Name" required/>
+            <input type="text" class="bill-input-left" id="fName" placeholder="Last Name" required readonly/>
             <input type="date" class="bill-input-left" id="billDate" name="bill Date" required>
-            <input type="text" class="bill-input-left" id="add1" placeholder="Address Line 1" required/>
-            <input type="text" class="bill-input-left" id="add2" placeholder="Address Line 2" />
-            <input type="text" class="bill-input-left-1 col-md-4" id="city" placeholder="City" id="city" />
-            <input type="text" class="bill-input-left-1 col-md-4" id="zip" placeholder="Zip" id="zip" />
-            <input type="text" class="bill-input-left-1 col-md-4" id="state" placeholder="State" id="state" />
-            <input type="text" class="bill-input-left" id="spName" placeholder="SP Name">
-            <input type="text" class="bill-input-left" id="customerAdd2" placeholder="Search Address here"
-                id="addSearch" />
+            <input type="email" class="bill-input-left" id="email" placeholder="Email" id="email" readonly/>
+            <input type="text" class="bill-input-left" name="phone" class="phone" id="phone" placeholder="Phone Number"  maxlength="10" pattern="[0-9]" readonly>
+            <input type="text" class="bill-input-left" id="add1" placeholder="Address Line 1" readonly/>
+            <input type="text" class="bill-input-left" id="add2" placeholder="Address Line 2" readonly/>
+            <input type="text" class="bill-input-left-1 col-md-4" id="city" placeholder="City" id="city" readonly required/>
+            <input type="text" class="bill-input-left-1 col-md-4" id="zip" placeholder="Zip" id="zip" readonly required/>
+            <input type="text" class="bill-input-left-1 col-md-4" id="state" placeholder="State" id="state" readonly required/>
+            <input type="text" class="bill-input-left" id="spName" placeholder="Sales Rep Name">
+            
         </div>
         <div class="bill-form-right col-md-9">
+
             <div class="row">
-                <h5 class="col-md-4 col-xs-12" style="color:#4835d4; font-family: 'Montserrat', sans-serif;">Bill
-                    Details</h5>
-                <h7 class="col-md-4 col-sm-6" style="color:#4835d4; font-family: 'Montserrat', sans-serif;">GSTIN:
-                    ###########</h7>
-                <h7 class="col-md-4 col-sm-6" style="color:#4835d4; font-family: 'Montserrat', sans-serif;">Invoice No.
-                    : <span id="billId">billId</span></h7>
+                <h6 class="col-md-3 col-xs-3" style="padding-top: 1%;"><span 
+                    style="color:#723f45; font-family: 'Montserrat', sans-serif; font-weight: bold; float: left;">Bill Details</span></h6>
+                <h3 class="col-md-9 col-xs-9" style="text-align: inherit;"><span 
+                    style="color:#723f45; font-family: 'Montserrat', sans-serif; font-weight: bold; ">Shree Electronics and Furniture</span></h3>
             </div>
+
+            <div class="row" style="padding:0 2% 0 2%;">
+                 <span class="bill-border col-md-3" style="line-height: 3; color:#723f45; font-family: 'Montserrat', sans-serif; padding: 0 0 0 0">GSTIN : 
+                    <span id="gstin" style="font-weight: bold;border-bottom: 1px dashed #723f45;  padding-bottom:1%; ">123456789123456</span>
+                </span>    
+                 <span class="col-md-1 col-sm-2 bill-border" 
+                 style="line-height: 3; color:#723f45; font-family: 'Montserrat', sans-serif; padding:0 0 0 0;">Inv no: </span>        
+                 <div class="form-group col-md-3" style="padding-right: 0; padding-left: 0; padding-top: 1%;">
+                     <div class="input-group">
+                         <input type="text" id="billId" class="bill-input-invoice" placeholder="Invoice No." style="line-height: 1;"/>
+                         <a href="#"><i class="bill-input-invoice-search fa fa-search"></i></a>
+                     </div>
+                 </div> 
+                <div id="billSelect" class="bill-border col-md-5 billSelect">
+                    <select id="selectItemsList" class="input bill-form-item">
+                    </select>
+                </div>
+            </div>
+            
             <table class="table">
                 <thead>
                     <tr>
@@ -37,58 +55,30 @@
                         <th scope="col" class="bill-border col-md-2">% Price</th>
                     </tr>
                 </thead>
-                
+
+
                 <tbody id="billItems">
-                    <tr id="item-itemCount">
-                      <td scope="row" class="bill-border col-md-1">${ic}</td>
-                      <td scope="col" class="bill-border col-md-6">
-                          <div id="divlbl-${itemCount}">
-                              <span id="lbl-${itemCount}" onClick="editItem(itemCount)"></span>
-                          </div>
-                          <div id="divItemsList-${itemCount}">
-                              <select id="itemsList-${itemCount}" class="input bill-form-item">
-                              </select>
-                          </div>
-                      </td>
-                      <td scope="col" class="bill-border col-md-1">
-                          <button id="removeItem-${itemCount}" class="btn btn-primary btnAddItem remove-${itemCount}"
-                          onClick="removeItem(itemCount)">
-                          <img class="btnAddIcon" src="https://img.icons8.com/fluency/48/000000/minus.png" />
-                      </button>
-                      </td>
-                      <td scope="col" class="bill-border col-md-1">
-                          <input type="text" class="ip-qty input" id="qty-${itemCount}">
-                      </td>
-                      <td scope="col" class="bill-border col-md-2">
-                          &#8377; <span id="lblOprice-${itemCount}">0</span>
-                      </td>
-                      <td scope="col" class="bill-border col-md-1">
-                          <input type="text" class="ip-qty input" id="ipDiscount-${itemCount}"> %</span>
-                      </td>
-                      <td scope="col" class="bill-border col-md-2">
-                          &#8377; <span id="lblDprice-${itemCount}">0</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                <thead>
+                </tbody>
+
+                <thead class="bill-total-head">
                     <tr class="table-total">
                         <th scope="col" class="col-md-3 bill-border">
-                            <button id="btnSave" class="btn btn-link btn-sm" onClick="saveBill();">
+                            <button id="btnSave" class="btn btn-link btn-sm bill-print-save" onClick="saveBill();">
                                 <img class="btn-action" src="https://img.icons8.com/nolan/64/save.png" />
                             </button>
                         </th>
                         <th scope="col" class="col-md-3 bill-border">
-                            <button id="btnPrint" class="btn btn-link btn-sm" onClick="printBill();">
-                                <img class="btn-action"
+                            <button id="btnPrint" class="btn btn-link btn-sm bill-print-save" onClick="printBill();">
+                                <img class="btn-action bill-print-save-img"
                                     src="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-print-photography-icongeek26-outline-colour-icongeek26.png" />
                             </button>
                         </th>
                         <th scope="col" class="col-md-3 bill-border">
-                            <h6 style="color:#4835d4; font-family: 'Montserrat', sans-serif;">Total</h6>
+                            <h6 style="color:#723f45; font-family: 'Montserrat', sans-serif;">Total</h6>
                         </th>
-                        <th scope="col" class="col-md-2 bill-border">&#8377; <span id="totalPrice"></span></th>
-                        <th scope="col" class="col-md-1 bill-border"><span id="totalDiscountPercent"></span> %</th>
-                        <th scope="col" class="col-md-2 bill-border">&#8377; <span id="totalDiscountedPrice"></span>
+                        <th scope="col" class="col-md-2 bill-border bill-total-th">&#8377; <span id="totalPrice"></span></th>
+                        <th scope="col" class="col-md-1 bill-border bill-total-th"><span id="totalDiscountPercent"></span> %</th>
+                        <th scope="col" class="col-md-2 bill-border bill-total-th">&#8377; <span id="totalDiscountedPrice"></span>
                         </th>
                     </tr>
                 </thead>

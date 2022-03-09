@@ -4,6 +4,7 @@ $(document).ready(function () {
   updateBillBody();
   //debugger;  
   //updateProductsBody();
+  //updateCustomerBody();
 
 });
 
@@ -61,6 +62,18 @@ function updateMasterBody(){
         document.getElementById("body-contents").innerHTML = text;
         docCatagoryReady();
         docBrandReady();
+      }
+    )
+    
+}
+
+
+function updateCustomerBody(){
+  fetch("customer.html")
+    .then((response) => response.text())
+    .then(
+      (text) => {
+        document.getElementById("body-contents").innerHTML = text;
       }
     )
     
