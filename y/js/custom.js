@@ -193,7 +193,7 @@ class bill {
   }
 }
 
-class billItem {
+class itemBill {
   constructor(sku, name, price, discountPercent, discountPrice, qty) {
     this.sku = sku;
     this.name = name;

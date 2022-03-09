@@ -107,7 +107,7 @@ function loadPrdouctsDd(){
       allProducts.forEach((doc) => {
         if (doc.name != undefined && doc.sku != undefined) {
           displayProducts.push(doc.name + " (" + doc.sku+")");
-          var item = new billItem(
+          var item = new itemBill(
             doc.sku,
             doc.name,
             doc.price,
