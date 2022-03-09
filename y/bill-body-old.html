@@ -1,0 +1,130 @@
+<div id="bill-header" class="bill-header row">
+    <div class="col-md-8" style="text-align: center;">
+        <h2>Shree Electronics and Furniture</h2>
+    </div>
+    <div class="col-md-2" style="padding-left: 0;">
+        <h8 style="float:left;">GSTIN : xxxxxxxxxxx </h8></br>
+    </div>
+    <div class="col-md-2" style="padding-left: 0;">
+        <h8 style="float:left;">Bill No : <span id="billId"></span></h8>
+    </div>
+</div>
+
+<div id="bill-body" class="row">
+
+    <div style="max-height: 200px;" class="bill-customer">
+        <div class="row temp-border item">
+            <div class="row bill-row">
+                <div class="col-md-6 bill-row">
+                    <input class="input ip-uppercase bill-ip-name-add" id="customerName" placeholder="Search Name here"
+                        id="nameSearch" />
+                </div>
+                <div class="col-md-3 bill-date-sp-div bill-row">
+                    <input type="date" class="bill-date input ip-uppercase bill-ip-name-add" id="billDate"
+                        name="bill Date">
+                </div>
+            </div>
+            <div style="margin-top: 1%;" class="row bill-row">
+                <div class="col-md-6 bill-row">
+                    <input class="input ip-uppercase bill-ip-name-add" id="customerAdd1"
+                        placeholder="Search Address here" id="addSearch" />
+                </div>
+                <div class="col-md-3 bill-date-sp-div bill-row">
+                    <input class="bill-sp input ip-uppercase bill-ip-name-add" id="spName" placeholder="SP Name">
+                </div>
+            </div>
+            <div style="margin-top: 1%;" class="row bill-row">
+                <div class="col-md-6 bill-row">
+                    <input class="input ip-uppercase bill-ip-name-add" id="customerAdd2"
+                        placeholder="Search Address here" id="addSearch" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <ul start="1" class="bill-title">
+            <li>
+                <div class="row temp-border item">
+                    <div class="row col-md-6">
+                        <div id="divlblTotal" style="text-align: center;">
+                            <span>Item</span>
+                        </div>
+                    </div>
+                    <div class="col-md-1" style="padding-left: 0;">
+                        <span>Qty</span>
+                    </div>
+                    <div class="col-md-2 price">
+                        <span>Price</span>
+                    </div>
+                    <div class="col-md-1 price">
+                        <span>Disc</span>
+                    </div>
+                    <div class="col-md-2 price">
+                        <span>Discount Price</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="bill-items-div">
+        <ol id="billItem" start="1" class="bill-item">
+        </ol>
+    </div>
+
+    <div>
+        <ul start="1" class="bill-total">
+            <li>
+                <div class="row temp-border item">
+                    <div class="col-md-1 div-btn-action">
+                        <button id="btnSave" class="btn div-btn-action bill-print-save btn-link btn-sm" onClick="saveBill();">
+                            <img class="btn-action" src="https://img.icons8.com/nolan/64/save.png" />
+                        </button>
+                    </div>
+                    <div class="col-md-1 div-btn-action">
+                        <button id="btnPrint" class="btn div-btn-action bill-print-save btn-link btn-sm" onClick="printBill();">
+                            <img class="btn-action"
+                                src="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-print-photography-icongeek26-outline-colour-icongeek26.png" />
+                        </button>
+                    </div>
+                    <div id="divlblTotal" class="row col-md-5 div-total">
+                        <span>Total</span>
+                    </div>
+                    <div class="col-md-2 price">
+                        <span>&#8377; <span id="totalPrice"></span></span>
+                    </div>
+                    <div class="col-md-1 price">
+                        <span><span id="totalDiscountPercent"></span> %</span>
+                    </div>
+                    <div class="col-md-2 price">
+                        <span>&#8377; <span id="totalDiscountedPrice"></span></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row bill-footer">
+    <div class="col-md-6">
+        <h8><img src="https://img.icons8.com/external-microdots-premium-microdot-graphic/64/000000/external-address-business-finance-vol4-microdots-premium-microdot-graphic.png"
+                style="width: 3%;" />
+            Agarwal Tower,
+            Opp Central Bank, GT Road. Etah
+        </h8>
+    </div>
+
+    <div class="col-md-3">
+        <h8>
+            <img src="https://img.icons8.com/cotton/64/000000/iphone-x--v1.png" style="width: 5%;" />
+            +919045493049
+        </h8>
+    </div>
+    <div class="col-md-3">
+        <h8>
+            <img src="https://img.icons8.com/cotton/64/000000/secured-letter--v1.png" style="width: 6%;" />
+            rahul.agrawal689@gmail.com
+        </h8>
+    </div>
+</div>

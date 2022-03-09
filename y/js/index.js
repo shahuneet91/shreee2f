@@ -1,27 +1,5 @@
-
-$(document).ready(function(){
-
-  var phoneNumber = '+919045493049';
-
-function resize() {
-  if ($(window).width() < 700) {
-    $("#filter").addClass("collapse");
- 
-    $("#priceFilter").addClass("collapse");
-
-    $("#topSelling").addClass("collapse");
-  }
-}
-
-$("#categoryFilter").addClass("collapse");
-$("#brandFilter").addClass("collapse");
-
-//watch window resize
-$(window).on("load", function () {
-  resize();
-});
-
-//var allProducts = [];
+var phoneNumber = '+919045493049';
+var allProducts = [];
 var products = [];
 var hotProducts = [];
 var order;
@@ -29,6 +7,9 @@ var min_price = 0;
 var max_price = 500000;
 var filteredProducts = [];
 var productsLoaded = false;
+
+
+
 // var serverLink="";
 // var imgLink="/y";
 // var server = false;
@@ -58,13 +39,28 @@ var productsLoaded = false;
     );
   }
 });*/
-  /*****************   Loading Master Data Section Start **************/
 
- 
+
+$(document).ready(function () {
+  function resize() {
+    if ($(window).width() < 700) {
+      $("#filter").addClass("collapse");
+      $("#categoryFilter").addClass("collapse");
+      $("#priceFilter").addClass("collapse");
+      $("#brandFilter").addClass("collapse");
+      $("#topSelling").addClass("collapse");
+    }
+  }
+
+  //watch window resize
+  $(window).on("load", function () {
+    resize();
+  });
+  /*****************   Loading Master Data Section Start **************/
 
   /****Load Filters Master Data Start*****/
   var catBrandInterval = setInterval(function () {
-    if (categoryList.length > 0 && products.length > 0) {
+    if (categoryList.length > 0 && brandList.length > 0) {
       loadFilters();
       //populate search categories
       populateSearchCategories();
@@ -72,58 +68,64 @@ var productsLoaded = false;
     }
   }, 500);
 
-  var setUrls;
+  
+  var loadProducts = setInterval(function () {
+    if (dbProducts.length != 0) {
+      $.each(dbProducts, function () {
+        getFileUrl(this.imageName, this);
+      });
+      clearInterval(loadProducts);
+    }
+  }, 500);
+
   var loadPage = setInterval(function () {
-    if (!(dbProducts.length == 0)) {
-      setUrls = setInterval(function () {
-        $.each(dbProducts, function () {
-          getFileUrl(this.imageName);
-        });
-      }, 500);
-    } else if (dbProducts.length == 0 && !(allProducts.length == 0)) {
-      clearInterval(setUrls);
+    console.log("allProducts : "+allProducts.length +" dbProducts : "+ dbProducts.length);
+    if (allProducts.length == dbProducts.length) {
+      
       loadHome();
       clearInterval(loadPage);
     }
   }, 500);
 
+});
 
-  function loadHome(){
-    debugger;
-    //Load Product Master Data
-    products = allProducts;
-    //Load Hot Products
-    loadHotProducts();
-
-    /*****************   Populating UI Section Start **************/
-    //populate products
-    populateProducts();
-    //populate top selling products
-    populateHotProducts();
-    // populate paginations
-    populatePagination();
-    //populate Products and Filters
-    populateFilters();
-  }
- 
+function loadHome() {
+  
+  //Load Product Master Data
+  products = allProducts;
+  //Load Hot Products
+  loadHotProducts();
+  /*****************   Populating UI Section Start **************/
+  //populate products
+  populateProducts();
+  //populate top selling products
+  populateHotProducts();
+  // populate paginations
+  populatePagination();
+  //populate Products and Filters
+  populateFilters();
   /****Load Filters Master Data End*****/
+}
 
-
-
-function getFileUrl(filename) {
+function getFileUrl(filename, prd) {
   //create a storage reference
-  var storage = firebase.storage().ref(filename);
-  //get file url
-  storage
-    .getDownloadURL()
-    .then(function (url) {
-      //console.log(url);
-      removeTempProd(filename,url);
-    })
-    .catch(function (error) {
-      console.log("error encountered");
-      removeTempProd(filename,"");
-    });
+  if (filename.length < 100) {
+    var storage = firebase.storage().ref(filename);
+    //get file url
+    storage
+      .getDownloadURL()
+      .then(function (url) {
+        //console.log(url);
+        prd.imageUrl = url;
+        var pIndex = dbProducts.findIndex((x) => (x.id = prd.id));
+        dbProducts.splice(pIndex, 1, prd);
+        allProducts.push(prd);
+      })
+      .catch(function (error) {
+        console.log("error encountered"+error);
+        removeTempProd(filename, "");
+      });
+  }
 }
 
 function removeTempProd(filename, url) {
@@ -135,7 +137,7 @@ function removeTempProd(filename, url) {
       }
       allProducts.push(p);
       var pIndex = dbProducts.findIndex((c) => c.name === p.name);
-      dbProducts.splice(pIndex, 1);
+      dbProducts.splice(pIndex, 1, p);
     }
   });
 }
@@ -252,7 +254,7 @@ function resetFilters() {
   $.each(brandList, function () {
     this.filter = false;
   });
-debugger;
+
 resetPriceFilter();
 }
 
@@ -279,7 +281,7 @@ function setFilter(id, isfilter) {
 }
 
 function resetHome() {
-  debugger;
+  
   resetFilters();
   loadHome();
 }
@@ -293,7 +295,7 @@ function setHotProducts() {
 
 function populateProducts(page) {
   if (products.length > 0) {
-    var productsPerPage  = $(window).width() < 480 ? 2 :8;
+    var productsPerPage  = $(window).width() < 480 ? 2 :4;
     $("#productDiv").empty();
     sortProducts(order);
     var startAt = 1;
@@ -337,7 +339,7 @@ function populateProducts(page) {
           products[p].name +
           "</a></h3>" +
           '<h4 class="product-price">&#x20B9; ' +
-          products[p].discountedPrice +
+          products[p].discPrice +
           '&nbsp<del class="product-old-price">&#x20B9;  ' +
           products[p].price +
           "</del></h4>" +
@@ -580,7 +582,7 @@ $(".linkFilter").click(function (e) {
 });
 
 $(".home").click(function (e) {
-  debugger;
+  
   resetHome();
 });
 
@@ -653,4 +655,3 @@ function bindWhatspp() {
   });
 }
 
-});

@@ -128,11 +128,11 @@
 	var priceInputMax = document.getElementById('price-max'),
 			priceInputMin = document.getElementById('price-min');
 
-	priceInputMax.addEventListener('change', function(){
+	$("#price-max").change(function(e){
 		updatePriceSlider($(this).parent() , this.value)
 	});
 
-	priceInputMin.addEventListener('change', function(){
+	$("#price-min").change(function(e){
 		updatePriceSlider($(this).parent() , this.value)
 	});
 

@@ -16,15 +16,18 @@
 <body>
 
     <div class="row headerLink" style="background-color: rgb(21, 22, 29); border-bottom: 3px solid red;">
-        <div class="col-md-2 col-xs-2" style="max-width: 175px;">
+        <div class="col-md-2" style="max-width: 175px;">
             <a href="index.html">
                 <img src="./img/shree-logo-blk.png" alt="" />
             </a>
         </div>
-        <div class="col-md-2 col-xs-2" id="productLink" class="pageLinks">
+        <div class="col-md-2 page-link-div" id="productLink">
             <a style="color: white;" href="master.html">Master</a>
         </div>
-        <div class="col-md-2 col-xs-2" id="indexLink" class="pageLinks">
+        <div class="col-md-2 page-link-div" id="billLink">
+            <a style="color: white;" href="bill.html">Bill</a>
+        </div>
+        <div class="col-md-2 page-link-div" id="indexLink">
             <a style="color: white;" href="index.html">Website</a>
         </div>
     </div>
@@ -44,8 +47,7 @@
                         <input type="text" placeholder="SKU" id="sku" class="form-control" required />
                     </div>
                     <div class="col-2 form-margin">
-                        <input type="text" placeholder="Product Name" id="productName"
-                            class="form-control" required />
+                        <input type="text" placeholder="Product Name" id="productName" class="form-control" required />
                     </div>
                     <div class="col-2 form-margin">
                         <select class="form-control" id="category" required>
@@ -58,33 +60,34 @@
                     <div class="col-2 form-margin">
                         <input type="number" placeholder="Price" id="price" class="form-control" required />
                     </div>
-                    
-                    <div class="row" style="margin-top: 1%;">
-                    <div class="col-2 form-margin">
-                        <input type="text" placeholder="Rank" id="rank" class="form-control" required />
-                    </div>
 
-                    <div class="col-1 form-margin chkbox-padding chkbox-margin" style="width: 10%;">
-                        <input type="checkbox" id="discount" style="margin-left: 20%;" required />
-                        <label class="form-label" for="form4Example2">Discount</label>
+                    <div class="row" style="margin-top: 1%;">
+                        <div class="col-2 form-margin">
+                            <input type="text" placeholder="Rank" id="rank" class="form-control" required />
+                        </div>
+
+                        <div class="col-1 form-margin chkbox-padding chkbox-margin" style="width: 10%;">
+                            <input type="checkbox" id="discount" style="margin-left: 20%;" required />
+                            <label class="form-label" for="form4Example2">Discount</label>
+                        </div>
+                        <div class="col-1 form-margin">
+                            <input type="number" placeholder="%" id="discountPercent" class="form-control"
+                                style="width: 85%;" required />
+                        </div>
+                        <div class="col-2 form-margin chkbox-padding" style="margin-left: 0%; margin-right: 1.25%;">
+                            <input type="checkbox" id="hot" />
+                            <label class="form-label" for="form4Example2">Hot</label>
+                            <input type="checkbox" id="latest" style="margin-left: 15%;" />
+                            <label class="form-label" for="form4Example2">Latest</label>
+                        </div>
+                        <div class="col-2 form-margin">
+                            <input type="number" placeholder="Offer Price" id="discountPrice" class="form-control"
+                                required />
+                        </div>
+                        <div class="col-2 form-margin" style="margin-left: 1.5%;">
+                            <input type="file" id="files" multiple />
+                        </div>
                     </div>
-                    <div class="col-1 form-margin">
-                        <input type="number" placeholder="%" id="discountPercent" class="form-control" style="width: 85%;" required />
-                    </div>
-                    <div class="col-2 form-margin chkbox-padding" style="margin-left: 0%; margin-right: 1.25%;">
-                        <input type="checkbox" id="hot" />
-                        <label class="form-label" for="form4Example2">Hot</label>
-                        <input type="checkbox" id="latest" style="margin-left: 15%;" />
-                        <label class="form-label" for="form4Example2">Latest</label>
-                    </div>
-                    <div class="col-2 form-margin">
-                        <input type="number" placeholder="Offer Price" id="discountPrice" class="form-control"
-                            required />
-                    </div>
-                    <div class="col-2 form-margin" style="margin-left: 1.5%;">
-                        <input type="file" id="files" multiple />
-                    </div>
-</div>
 
 
                 </div>

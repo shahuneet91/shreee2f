@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Shree Electronics & Furniture</title>
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+    <link rel="stylesheet" href="./css/custom.css" />
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="./css/style.css" />
+    <link type="text/css" rel="stylesheet" href="./css/footer.css" />
+
+
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+            $("#add-product").load("product-form.html");
+            $("#product-table").load("product-table.html");
+        });
+    </script>
+</head>
+<div id="header">
+</div>
+
+<body>
+    <div class="bill-body-content">
+
+        <div id="bill-header" class="bill-header row">
+            <div class="col-md-8" style="text-align: center;">
+                <h2>Shree Electronics and Furniture</h2>
+            </div>
+            <div class="col-md-2" style="padding-left: 0;">
+                <h8 style="float:left;">GSTIN : xxxxxxxxxxx </h8></br>
+            </div>
+            <div class="col-md-2" style="padding-left: 0;">
+                <h8 style="float:left;">Bill No : <span id="billId"></span></h8>
+            </div>
+        </div>
+
+        <div id="bill-body" class="row">
+
+            <div style="max-height: 165px;" class="bill-customer">
+                <div class="row temp-border item">
+                    <div class="row bill-row">
+                        <div class="col-md-1 bill-row">
+                            <span class="bill-lbl-name-add">Name:</span>
+                        </div>
+                        <div class="col-md-6 bill-row">
+                            <input class="input ip-uppercase bill-ip-name-add" id="customerName" placeholder="Search Name here"
+                                id="nameSearch" />
+                        </div>
+                        <div class="col-md-1 bill-date-sp-div bill-row">
+                            <span class="bill-lbl">Date :</span>
+                        </div>
+                        <div class="col-md-3 bill-date-sp-div bill-row">
+                            <input type="date" class="bill-date input ip-uppercase bill-ip-name-add" id="billDate" name="bill Date">
+                        </div>
+                    </div>
+                    <div style="margin-top: 1%;" class="row bill-row">
+                        <div class="col-md-1 bill-row">
+                            <span class="bill-lbl-name-add">Address-1:</span>
+                        </div>
+                        <div class="col-md-6 bill-row">
+                            <input class="input ip-uppercase bill-ip-name-add" id="customerAdd1" placeholder="Search Address here"
+                                id="addSearch" />
+                        </div>
+                        <div class="col-md-1 bill-date-sp-div bill-row">
+                            <span class="bill-lbl">SP :</span>
+                        </div>
+                        <div class="col-md-3 bill-date-sp-div bill-row">
+                            <input class="bill-sp input ip-uppercase bill-ip-name-add" id="spName" placeholder="SP Name">
+                        </div>
+                    </div>
+                    <div style="margin-top: 1%;" class="row bill-row">
+                        <div class="col-md-1 bill-row">
+                            <span class="bill-lbl-name-add">Address-2:</span>
+                        </div>
+                        <div class="col-md-6 bill-row">
+                            <input class="input ip-uppercase bill-ip-name-add" id="customerAdd2" placeholder="Search Address here"
+                                id="addSearch" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <ul start="1" class="bill-title">
+                    <li>
+                        <div class="row temp-border item">
+                            <div class="row col-md-6">
+                                <div id="divlblTotal" style="text-align: center;">
+                                    <span>Item</span>
+                                </div>
+                            </div>
+                            <div class="col-md-1" style="padding-left: 0;">
+                                <span>Qty</span>
+                            </div>
+                            <div class="col-md-2 price">
+                                <span>Price</span>
+                            </div>
+                            <div class="col-md-1 price">
+                                <span>Disc</span>
+                            </div>
+                            <div class="col-md-2 price">
+                                <span>Discount Price</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bill-items-div">
+                <ol id="billItem" start="1" class="bill-item">
+                </ol>
+            </div>
+
+            <div>
+                <ul start="1" class="bill-total">
+                    <li>
+                        <div class="row temp-border item">
+                            <div class="col-md-1 div-btn-action">
+                                <button id="btnSave" class="btn div-btn-action btn-link btn-sm">
+                                    <img class="btn-action" src="https://img.icons8.com/nolan/64/save.png" />
+                                </button>
+                            </div>
+                            <div class="col-md-1 div-btn-action">
+                                <button id="btnPrint" class="btn div-btn-action btn-link btn-sm">
+                                    <img class="btn-action"
+                                        src="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-print-photography-icongeek26-outline-colour-icongeek26.png" />
+                                </button>
+                            </div>
+                            <div id="divlblTotal" class="row col-md-5 div-total">
+                                <span>Total</span>
+                            </div>
+                            <div class="col-md-2 price">
+                                <span>&#8377; <span id="totalPrice"></span></span>
+                            </div>
+                            <div class="col-md-1 price">
+                                <span><span id="totalDiscountPercent"></span> %</span>
+                            </div>
+                            <div class="col-md-2 price">
+                                <span>&#8377; <span id="totalDiscountedPrice"></span></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row bill-footer">
+            <div class="col-md-6">
+                <h8><img src="https://img.icons8.com/external-microdots-premium-microdot-graphic/64/000000/external-address-business-finance-vol4-microdots-premium-microdot-graphic.png"
+                        style="width: 3%;" />
+                    Agarwal Tower,
+                    Opp Central Bank, GT Road. Etah
+                </h8>
+            </div>
+
+            <div class="col-md-3">
+                <h8>
+                    <img src="https://img.icons8.com/cotton/64/000000/iphone-x--v1.png" style="width: 5%;" />
+                    +919045493049
+                </h8>
+            </div>
+            <div class="col-md-3">
+                <h8>
+                    <img src="https://img.icons8.com/cotton/64/000000/secured-letter--v1.png" style="width: 6%;" />
+                    rahul.agrawal689@gmail.com
+                </h8>
+            </div>
+        </div>
+    </div>
+</body>
+
+<div id="footer" class="footer-div"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyCpr3eDyk7yg6JmOnpNR8CEt5wOmTsNU2Y",
+        authDomain: "shreeetof.firebaseapp.com",
+        databaseURL: "https://shreeetof-default-rtdb.firebaseio.com",
+        projectId: "shreeetof",
+        storageBucket: "shreeetof.appspot.com",
+        messagingSenderId: "410252514308",
+        appId: "1:410252514308:web:917f22e7ad2af870ed9151"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    var db = firebase.firestore();
+    db.settings({ timestampsInSnapshots: true });
+
+</script>
+
+
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/bill.js"></script>
+
+</html>

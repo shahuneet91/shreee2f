@@ -1,0 +1,111 @@
+<div id="bill-body" class="row">
+
+    <div class="bill-form bill-border row">
+        <div class="bill-form-left col-md-3">
+            <h6 style="color:white;">Customer Details</h6>
+            <input type="text" class="bill-input-left" id="customerId" placeholder="Customer ID"/>
+            <input type="text" class="bill-input-left" id="fName" placeholder="First Name" required/>
+            <input type="text" class="bill-input-left" id="fName" placeholder="Last Name" required readonly/>
+            <input type="date" class="bill-input-left" id="billDate" name="bill Date" required>
+            <input type="email" class="bill-input-left" id="email" placeholder="Email" id="email" readonly/>
+            <input type="text" class="bill-input-left" name="phone" class="phone" id="phone" placeholder="Phone Number"  maxlength="10" pattern="[0-9]" readonly>
+            <input type="text" class="bill-input-left" id="add1" placeholder="Address Line 1" readonly/>
+            <input type="text" class="bill-input-left" id="add2" placeholder="Address Line 2" readonly/>
+            <input type="text" class="bill-input-left-1 col-md-4" id="city" placeholder="City" id="city" readonly required/>
+            <input type="text" class="bill-input-left-1 col-md-4" id="zip" placeholder="Zip" id="zip" readonly required/>
+            <input type="text" class="bill-input-left-1 col-md-4" id="state" placeholder="State" id="state" readonly required/>
+            <input type="text" class="bill-input-left" id="spName" placeholder="Sales Rep Name">
+            
+        </div>
+        <div class="bill-form-right col-md-9">
+
+            <div class="row">
+                <h6 class="col-md-3 col-xs-3" style="padding-top: 1%;"><span 
+                    style="color:#723f45; font-family: 'Montserrat', sans-serif; font-weight: bold; float: left;">Bill Details</span></h6>
+                <h3 class="col-md-9 col-xs-9" style="text-align: inherit;"><span 
+                    style="color:#723f45; font-family: 'Montserrat', sans-serif; font-weight: bold; ">Shree Electronics and Furniture</span></h3>
+            </div>
+
+            <div class="row" style="padding:0 2% 0 2%;">
+                 <span class="bill-border col-md-3" style="line-height: 3; color:#723f45; font-family: 'Montserrat', sans-serif; padding: 0 0 0 0">GSTIN : 
+                    <span id="gstin" style="font-weight: bold;border-bottom: 1px dashed #723f45;  padding-bottom:1%; ">123456789123456</span>
+                </span>    
+                 <span class="col-md-1 col-sm-2 bill-border" 
+                 style="line-height: 3; color:#723f45; font-family: 'Montserrat', sans-serif; padding:0 0 0 0;">Inv no: </span>        
+                 <div class="form-group col-md-3" style="padding-right: 0; padding-left: 0; padding-top: 1%;">
+                     <div class="input-group">
+                         <input type="text" id="billId" class="bill-input-invoice" placeholder="Invoice No." style="line-height: 1;"/>
+                         <a href="#"><i class="bill-input-invoice-search fa fa-search"></i></a>
+                     </div>
+                 </div> 
+                <div id="billSelect" class="bill-border col-md-5 billSelect">
+                    <select id="selectItemsList" class="input bill-form-item">
+                    </select>
+                </div>
+            </div>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="bill-border col-md-1">#</th>
+                        <th scope="col" class="bill-border col-md-7">Item</th>
+                        <th scope="col" class="bill-border col-md-1">Qty</th>
+                        <th scope="col" class="bill-border col-md-2">Price</th>
+                        <th scope="col" class="bill-border col-md-1">%</th>
+                        <th scope="col" class="bill-border col-md-2">% Price</th>
+                    </tr>
+                </thead>
+
+
+                <tbody id="billItems">
+                </tbody>
+
+                <thead class="bill-total-head">
+                    <tr class="table-total">
+                        <th scope="col" class="col-md-3 bill-border">
+                            <button id="btnSave" class="btn btn-link btn-sm bill-print-save" onClick="saveBill();">
+                                <img class="btn-action" src="https://img.icons8.com/nolan/64/save.png" />
+                            </button>
+                        </th>
+                        <th scope="col" class="col-md-3 bill-border">
+                            <button id="btnPrint" class="btn btn-link btn-sm bill-print-save" onClick="printBill();">
+                                <img class="btn-action bill-print-save-img"
+                                    src="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-print-photography-icongeek26-outline-colour-icongeek26.png" />
+                            </button>
+                        </th>
+                        <th scope="col" class="col-md-3 bill-border">
+                            <h6 style="color:#723f45; font-family: 'Montserrat', sans-serif;">Total</h6>
+                        </th>
+                        <th scope="col" class="col-md-2 bill-border bill-total-th">&#8377; <span id="totalPrice"></span></th>
+                        <th scope="col" class="col-md-1 bill-border bill-total-th"><span id="totalDiscountPercent"></span> %</th>
+                        <th scope="col" class="col-md-2 bill-border bill-total-th">&#8377; <span id="totalDiscountedPrice"></span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row bill-footer">
+    <div class="col-md-6">
+        <h8><img src="https://img.icons8.com/external-microdots-premium-microdot-graphic/64/000000/external-address-business-finance-vol4-microdots-premium-microdot-graphic.png"
+                style="width: 3%;" />
+            Agarwal Tower,
+            Opp Central Bank, GT Road. Etah
+        </h8>
+    </div>
+
+    <div class="col-md-3">
+        <h8>
+            <img src="https://img.icons8.com/cotton/64/000000/iphone-x--v1.png" style="width: 5%;" />
+            +919045493049
+        </h8>
+    </div>
+    <div class="col-md-3">
+        <h8>
+            <img src="https://img.icons8.com/cotton/64/000000/secured-letter--v1.png" style="width: 6%;" />
+            rahul.agrawal689@gmail.com
+        </h8>
+    </div>
+</div>

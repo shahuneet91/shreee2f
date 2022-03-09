@@ -10,29 +10,52 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
     <link rel="stylesheet" href="css/mdb.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
     <link rel="stylesheet" href="./css/custom.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="./css/style.css" />
+    <link type="text/css" rel="stylesheet" href="./css/footer.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCpr3eDyk7yg6JmOnpNR8CEt5wOmTsNU2Y",
+            authDomain: "shreeetof.firebaseapp.com",
+            databaseURL: "https://shreeetof-default-rtdb.firebaseio.com",
+            projectId: "shreeetof",
+            storageBucket: "shreeetof.appspot.com",
+            messagingSenderId: "410252514308",
+            appId: "1:410252514308:web:917f22e7ad2af870ed9151"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
+
+    </script>
+
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script>
+         $(function () {
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+    });
+    </script>
 </head>
 
 <body>
-    <div class="row headerLink" style="background-color: rgb(21, 22, 29); border-bottom: 3px solid red;">
-        <div class="col-md-2 col-xs-2" style="max-width: 175px;">
-            <a href="index.html">
-                <img src="./img/shree-logo-blk.png" alt="" />
-            </a>
-        </div>
-        <div class="col-md-2 col-xs-2" id="productLink" class="pageLinks">
-            <a style="color: white;" href="product.html">Product</a>
-        </div>
-        <div class="col-md-2 col-xs-2" id="indexLink" class="pageLinks">
-            <a style="color: white;" href="index.html">Website</a>
-        </div>
-    </div>
+    <div id="header" class="main-header"></div>
+</br>
     <br>
-    <div class="container">
-        <div class="row center-button">
+    <div class="container row center-button" style="margin-bottom: 1% ;">
             <div class="col-md-5"
                 style="border: 2px dashed rgb(102, 0, 51) !important;border-radius: 15px !important;padding: 1% 1% 1% 2% !important;">
                 <form id="add-category">
@@ -68,14 +91,14 @@
                     <div class="alert alert-info" role="alert" style="display: none;" id="catUpdateMsg">
                         Updated Category Successfully!!
                     </div>
-                    <table class="table">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th style="width: 75%;" scope="col">Name</th>
                                 <th style="text-align: center !important;" scope="col">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="categories-table">
+                        <tbody id="categories-table" class="table-scroll table-scroll-master">
                         </tbody>
                     </table>
                 </div>
@@ -115,42 +138,20 @@
                     <div class="alert alert-info" role="alert" style="display: none;" id="brandUpdatedMsg">
                         Updated Brand Successfully!!
                     </div>
-                    <table class="table">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th style="width: 75%;" scope="col">Name</th>
                                 <th style="text-align: center !important;" scope="col">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="brands-table">
+                        <tbody id="brands-table" class="table-scroll table-scroll-master">
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-            apiKey: "AIzaSyCpr3eDyk7yg6JmOnpNR8CEt5wOmTsNU2Y",
-            authDomain: "shreeetof.firebaseapp.com",
-            databaseURL: "https://shreeetof-default-rtdb.firebaseio.com",
-            projectId: "shreeetof",
-            storageBucket: "shreeetof.appspot.com",
-            messagingSenderId: "410252514308",
-            appId: "1:410252514308:web:917f22e7ad2af870ed9151"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        var db = firebase.firestore();
-        db.settings({ timestampsInSnapshots: true });
-
-    </script>
+    <div id="footer" class="footer-div"></div>
 </body>
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <script type="text/javascript" src="js/category.js"></script>

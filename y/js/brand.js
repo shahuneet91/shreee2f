@@ -1,39 +1,41 @@
-const add_brand = $("#add-brand");
-const brandAddedMsg = document.querySelector("div[id=brandAddedMsg]");
-const brandUpdatedMsg = document.querySelector("div[id=brandUpdatedMsg]");
-const brandDeletedMsg = document.querySelector("div[id=brandDeletedMsg]");
+// const brandAddedMsg = document.querySelector("div[id=brandAddedMsg]");
+// const brandUpdatedMsg = document.querySelector("div[id=brandUpdatedMsg]");
+// const brandDeletedMsg = document.querySelector("div[id=brandDeletedMsg]");
 
-const updateBrandBtn = document.getElementById("updateBrand");
-const addBrandBtn = document.getElementById("addBrand");
-const cancelBrandBtn = document.getElementById("cancelBrand");
+// const updateBrandBtn = document.getElementById("updateBrand");
+// const addBrandBtn = document.getElementById("addBrand");
+// const cancelBrandBtn = document.getElementById("cancelBrand");
 
-// $(document).ready(function () {
-//   db.collection("brands")
-//     .get()
-//     .then((snapshot) => {
-//       snapshot.docs.forEach((doc) => {
-//         fetchAllBrands(doc);
-//       });
-//     });
-// });
+function docBrandReady(){
+  var allBrnadInterval = setInterval(function () {
+    if (brandList.length > 0) {
+      $.each(brandList, function () {
+        populateAllBrands(this);
+      });
+      clearInterval(allBrnadInterval);
+    }
+  }, 500);
+}
 
-function fetchAllBrands(doc) {
-    $("#brands-table").append(`<tr style="width: 75%;" id="${doc.id}">
-					 <td>${doc.data().brand}</td>
-					 <td style="text-align: center !important;"><a href="javascript:void(0)" class="editBrand fa fa-edit" id="${
+function populateAllBrands(doc) {
+    $("#brands-table").append(`<tr id="${doc.id}">
+					 <td>${doc.name}</td>
+					 <td style="text-align: end !important; padding-right: 8%;"><a href="javascript:void(0)" class="editBrand fa fa-edit" id="${
              doc.id
            }"></a> | <a href="javascript:void(0)" class="delBrand fa fa-trash" id="${doc.id}"></a></td>
 	             </tr>`);
 
     $(".delBrand").click((e) => {
       e.stopImmediatePropagation();
-      brandAddedMsg.style.display = "none";
-      brandUpdatedMsg.style.display = "none";
-      brandDeletedMsg.style.display = "block";
+      $('#brandAddedMsg').css('display', 'none');
+      $('#brandUpdatedMsg').css('display', 'none')
+      $('#brandDeletedMsg').css('display', 'block')
       var id = e.target.id;
       db.collection("brands").doc(id).delete();
+      var removeIndex = brandList.findIndex((x) => x.id == id);
+      brandList.splice(removeIndex, 1);
       setTimeout(function () {
-        brandDeletedMsg.remove();
+        $('#brandDeletedMsg').remove();
       }, 5000);
       resetForm();
     });
@@ -42,18 +44,38 @@ function fetchAllBrands(doc) {
       e.stopImmediatePropagation();
       resetMsg();
       var id = e.target.id;
-      db.collection("brands")
-        .doc(id)
-        .get()
-        .then((doc) => {
-          $("#brand").val(doc.data().brand);
-          $("#id_edit_brand").val(doc.id);
-        });
-      addBrandBtn.style.display = "none";
-      updateBrandBtn.style.display = "block";
-      cancelBrandBtn.style.display = "block";
+      var brand = brnadList.find(x=> x.id = id);
+      $("#brand").val(brand.name);
+      $("#id_edit_brand").val(doc.id);
+      $('#addBrandBtn').css('display', 'none');
+      $('#updateBrandBtn').css('display', 'block')
+      $('#cancelBrandBtn').css('display', 'block')
     });
   }
+
+  $("#updateBrand").on("click", () => {
+    $('#brandAddedMsg').css('display', 'none');
+    $('#brandUpdatedMsg').css('display', 'none')
+    $('#brandDeletedMsg').css('display', 'block')
+    var id = $("#id_edit_brand").val();
+    var updatedBrand = new brand(($("#brand").val()), 0, false);
+    db.collection("brands")
+      .doc(id)
+      .set(
+        {
+          brand: updatedBrand.name,
+        },
+        {
+          merge: true,
+        }
+      );
+    var brandIndex = brandList.findIndex(x=>x.id == id);
+    brandList.splice(brandIndex,1,updatedBrand);
+    setTimeout(function () {
+      $('#brandUpdatedMsg').remove();
+    }, 5000);
+    resetForm();
+  });
 
 $("#cancelBrand").on("click", () => {
   e.stopImmediatePropagation();
@@ -61,68 +83,33 @@ $("#cancelBrand").on("click", () => {
   resetForm();
 });
 
-$("#updateBrand").on("click", () => {
-  brandAddedMsg.style.display = "none";
-  brandDeletedMsg.style.display = "none";
-  brandUpdatedMsg.style.display = "block";
-  var id = $("#id_edit_brand").val();
-  db.collection("brands")
-    .doc(id)
-    .set(
-      {
-        brand: $("#brand").val(),
-      },
-      {
-        merge: true,
-      }
-    );
-  setTimeout(function () {
-    brandUpdatedMsg.remove();
-  }, 5000);
-  resetForm();
-});
-
-add_brand.on("submit", (e) => {
+$("#add-brand").on("submit", (e) => {
   e.preventDefault();
-  brandDeletedMsg.style.display = "none";
-  brandUpdatedMsg.style.display = "none";
+  $('#brandDeletedMsg').css('display', 'none');
+  $('#brandUpdatedMsg').css('display', 'none')
+  var newBrand = new brand(($("#brand").val()), 0, false);
   db.collection("brands").add({
-    brand: $("#brand").val(),
+    brand: newBrand.name,
     added_at: Date(),
   });
-  brandAddedMsg.style.display = "block";
+  brandList.push(newBrand);
+  $('#brandAddedMsg').css('display', 'block');
   setTimeout(function () {
-    brandAddedMsg.remove();
+    $('#brandAddedMsg').remove();
   }, 5000);
   resetForm();
 });
 
 function resetForm() {
   $("#brand").val("");
-  addBrand.style.display = "block";
-  updateBrand.style.display = "none";
-  cancelBrand.style.display = "none";
+  $('#addBrandBtn').css('display', 'block');
+  $('#updateBrandBtn').css('display', 'none')
+  $('#cancelBrandBtn').css('display', 'none')
   resetMsg();
 }
 
 function resetMsg() {
-  brandAddedMsg.style.display = "none";
-  brandDeletedMsg.style.display = "none";
-  brandUpdatedMsg.style.display = "none";
+  $('#brandAddedMsg').css('display', 'none');
+  $('#brandUpdatedMsg').css('display', 'none')
+  $('#brandDeletedMsg').css('display', 'none')
 }
-
-db.collection("brands").onSnapshot((snapshot) => {
-  let changes = snapshot.docChanges();
-  changes.forEach((change) => {
-    if (change.type == "added") {
-      fetchAllBrands(change.doc);
-    } else if (change.type == "removed") {
-      var id = change.doc.id;
-      $("#" + id).remove();
-    } else if (change.type == "modified") {
-      var id = change.doc.id;
-      $("#" + id).remove();
-      fetchAllBrands(change.doc);
-    }
-  });
-});
