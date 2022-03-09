@@ -92,13 +92,6 @@ function createNewLineItem(){
   $("#divlbl-" + itemCount).show();
   $("#divItemsList-" + itemCount).hide();
   createItem();
-  loadPrdouctsDd();
-  //bindSelect();
-
-  var nextId = parseInt(itemCount)+1;
-  //$("#divItemsList-"+nextId).animate({scrollTop: $("#divItemsList-"+nextId).prop("scrollHeight")}, 1000);
-  //var scrollItem = $("#divlbl-" + itemCount);
-  //scrollItem.scrollIntoView();
 }
 
 function createNewBill(){
@@ -108,6 +101,7 @@ function createNewBill(){
 }
 
 function loadPrdouctsDd(){
+  debugger;
   var loadPrd = setInterval(function () {
     if (!allProducts.length == 0) {
       allProducts.forEach((doc) => {
