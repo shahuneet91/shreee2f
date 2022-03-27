@@ -74,6 +74,7 @@ function updateCustomerBody(){
     .then(
       (text) => {
         document.getElementById("body-contents").innerHTML = text;
+        preLoadCustomer();
       }
     )
     
