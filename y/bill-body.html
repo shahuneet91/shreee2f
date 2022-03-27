@@ -3,22 +3,30 @@
     <div class="bill-form bill-border row">
         <div class="bill-form-left col-md-3">
             <h6 style="color:white;">Customer Details</h6>
-            <input type="text" class="bill-input-left" id="customerId" placeholder="Customer ID"/>
-            <input type="text" class="bill-input-left" id="fName" placeholder="First Name" required/>
-            <input type="text" class="bill-input-left" id="fName" placeholder="Last Name" required readonly/>
             <input type="date" class="bill-input-left" id="billDate" name="bill Date" required>
+            <input type="text" class="bill-input-left" id="customerId" style="letter-spacing: 0.25em;" placeholder="Customer ID"/>
+            <div class="input-group">
+                <input type="text" class="bill-input-left" name="phone" style="letter-spacing: 0.25em;" id="phone" placeholder="Phone Number"  maxlength="10" pattern="[0-9]">
+                <a id="btnBillPhoneSearch" href="#" style="position: absolute; margin-left: 93%; padding-top: 1%;" onClick="findBillCustomer();"><i class="fa fa-search" style="color:white;"></i></a>
+            </div>
+            <input type="text" class="bill-input-left" id="fName" placeholder="First Name" required/>
+            <input type="text" class="bill-input-left" id="lName" placeholder="Last Name" required readonly/>
             <input type="email" class="bill-input-left" id="email" placeholder="Email" id="email" readonly/>
-            <input type="text" class="bill-input-left" name="phone" class="phone" id="phone" placeholder="Phone Number"  maxlength="10" pattern="[0-9]" readonly>
             <input type="text" class="bill-input-left" id="add1" placeholder="Address Line 1" readonly/>
             <input type="text" class="bill-input-left" id="add2" placeholder="Address Line 2" readonly/>
             <input type="text" class="bill-input-left-1 col-md-4" id="city" placeholder="City" id="city" readonly required/>
             <input type="text" class="bill-input-left-1 col-md-4" id="zip" placeholder="Zip" id="zip" readonly required/>
             <input type="text" class="bill-input-left-1 col-md-4" id="state" placeholder="State" id="state" readonly required/>
             <input type="text" class="bill-input-left" id="spName" placeholder="Sales Rep Name">
-            
+            <input id="billStatusFail" type="text" name="status" class="" value="Customer Not Found" style="background-color: #723f45; border: none; color: red; font-weight: bold" readonly/>
+            <input id="billStatusSuccess" type="text" name="status" class="" value="Operation Successful" style="background-color: #723f45; border: none; color: green; font-weight: bold" readonly/>
+            <input id="billStatusExists" type="text" name="status" class="" value="Bill Found !" style="background-color: #723f45; border: none; color: green; font-weight: bold" readonly/>
+            <input id="billStatusInvalid" type="text" name="status" class="" value="Invalid Bill !" style="background-color: #723f45; border: none; color: red; font-weight: bold" readonly/>
         </div>
         <div class="bill-form-right col-md-9">
-
+            <div id="billSpinner" style="padding-top: 20%; padding-left: 20%; position: absolute;">
+                <i class="fa fa-spinner fa-spin" style="font-size: 75px;color: #723f45; "></i>
+           </div>
             <div class="row">
                 <h6 class="col-md-3 col-xs-3" style="padding-top: 1%;"><span 
                     style="color:#723f45; font-family: 'Montserrat', sans-serif; font-weight: bold; float: left;">Bill Details</span></h6>
@@ -35,7 +43,7 @@
                  <div class="form-group col-md-3" style="padding-right: 0; padding-left: 0; padding-top: 1%;">
                      <div class="input-group">
                          <input type="text" id="billId" class="bill-input-invoice" placeholder="Invoice No." style="line-height: 1;"/>
-                         <a href="#"><i class="bill-input-invoice-search fa fa-search"></i></a>
+                         <a href="#" onclick="findBill();"><i class="bill-input-invoice-search fa fa-search"></i></a>
                      </div>
                  </div> 
                 <div id="billSelect" class="bill-border col-md-5 billSelect">

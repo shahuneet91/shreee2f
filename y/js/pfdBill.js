@@ -24,13 +24,14 @@ function createPdfBill(bill){
        );
      }
 
-     $("#pdfCustomerName").text(bill.customerName);
-     //$("#pdfCustomerName").text(bill.customerName);
+     debugger;
+     $("#pdfCustomerName").text(bill.customer.fname +" "+ bill.customer.lname);
      $("#pdfInveDate").text(bill.billDate);
      $("#pdfAmountDue").text(bill.billAmount);
      $("#pdfAmountTotal").text(bill.totalPrice);
      $("#pdfTotalDiscount").text(bill.totalDiscount);
      $("#pdfTotal").text(bill.billAmount);
-     $("#pdfCustomerAdd1").text(bill.customerAdd1);
-     $("#pdfCustomerAdd2").text(bill.customerAdd2);
+     $("#pdfCustomerAdd1").text(bill.customer.add1 + ",");
+     $("#pdfCustomerAdd2").text(bill.customer.add2 + ".");
+     $("#pdfCustomerAdd3").text(bill.customer.city + ", " + bill.customer.state + " - " + bill.customer.zip);
   }

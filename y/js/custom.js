@@ -38,13 +38,6 @@ if (categoryList.length == 0) {
     });
 }
 
-// categoryList.push(new category(categoryEnum.Laptops, 0, false));
-// categoryList.push(new category(categoryEnum.Smartphones, 0, false));
-// categoryList.push(new category(categoryEnum.Refrigerator, 0, false));
-// categoryList.push(new category(categoryEnum.Microwave, 0, false));
-// categoryList.push(new category(categoryEnum.Watches, 0, false));
-// categoryList.push(new category(categoryEnum.Headphones, 0, false));
-
 var brandEnum = {
   Apple: "Apple",
   Samsung: "Samsung",
@@ -63,12 +56,6 @@ class brand {
   }
 }
 var brandList = [];
-// brandList.push(new brand(brandEnum.Apple, 0, false));
-// brandList.push(new brand(brandEnum.Samsung, 0, false));
-// brandList.push(new brand(brandEnum.LG, 0, false));
-// brandList.push(new brand(brandEnum.Haier, 0, false));
-// brandList.push(new brand(brandEnum.Bosch, 0, false));
-// brandList.push(new brand(brandEnum.Sony, 0, false));
 
 if (localStorage.getItem("allBrandList")) {
   var brandsCache = window.localStorage.getItem("allBrandList");
@@ -93,20 +80,8 @@ if (brandList.length == 0) {
 
 class product {
   constructor(
-    id,
-    sku,
-    name,
-    category,
-    brand,
-    price,
-    discount,
-    percent,
-    hot,
-    latest,
-    rank,
-    disPrice,
-    imageName,
-    imageUrl
+    id, sku, name, category, brand, price, discount, percent, 
+    hot, latest, rank, discPrice, imageName, imageUrl
   ) {
     this.id = id,
     this.sku = sku;
@@ -119,7 +94,7 @@ class product {
     this.hot = hot;
     this.latest = latest;
     this.rank = rank;
-    this.discPrice = disPrice;
+    this.discPrice = discPrice;
     this.imageName = imageName;
     this.imageUrl = imageUrl;
   }
@@ -167,23 +142,13 @@ if (dbProducts.length == 0) {
 
 class bill {
   constructor(
-    billId,
-    billDate,
-    customerName,
-    customerAdd1,
-    customerAdd2,
-    items,
-    totalPrice,
-    totalDiscount,
-    billAmount,
-    paid,
-    employee
+    billDate, billId, customerId, customer, items,
+    totalPrice, totalDiscount, billAmount, paid, employee
   ) {
-    this.billId = billId;
     this.billDate = billDate;
-    this.customerName = customerName;
-    this.customerAdd1 = customerAdd1;
-    this.customerAdd2 = customerAdd2;
+    this.billId = billId;
+    this.customerId = customerId
+    this.customer = customer;
     this.items = items;
     this.totalPrice = totalPrice;
     this.totalDiscount = totalDiscount;
@@ -201,6 +166,29 @@ class itemBill {
     this.discountPercent = discountPercent;
     this.discountPrice = discountPrice;
     this.qty = qty;
+  }
+}
+
+class cust {
+  constructor(
+    id, addedDate, gender, suffix, fname, lname,
+    email, phone1, phone2, add1, add2,
+    city, zip, state
+  ) {
+    this.id = id;
+    this.addedDate =  addedDate; 
+    this.gender = gender;
+    this.suffix = suffix;
+    this.fname = fname;
+    this.lname = lname;
+    this.email = email;
+    this.phone1 = phone1;
+    this.phone2 = phone2;
+    this.add1 = add1;
+    this.add2 = add2;
+    this.city = city;
+    this.zip = zip;
+    this.state = state;
   }
 }
 
