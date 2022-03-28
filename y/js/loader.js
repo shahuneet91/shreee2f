@@ -75,6 +75,7 @@ function updateCustomerBody(){
       (text) => {
         document.getElementById("body-contents").innerHTML = text;
         preLoadCustomer();
+        bindPopup();
       }
     )
     

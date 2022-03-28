@@ -2,20 +2,22 @@
     <div class="customer-form customer-border row">
         <div class="customer-form-left col-md-5">
             <div class="row">
-                 <h5 style="color:white;">Customer Details</h5>
+                <h5 style="color:white;">Customer Details</h5>
             </div>
             <div class="row">
-                   <span class="col-md-2 col-sm-2" style="padding:0 0 0 5%; color:white; max-width: 15%;">Add</span>
-                   <label class="col-md-1 col-sm-1" class="ip-switch" 
-                   style="height:25px; width:60px; background-color: white; padding-left: 2%; padding-right: 0%; border-radius: 37px;">
-                       <input type="checkbox" id="cusOperation" style="display: none;">
-                       <span class="slider round"></span>
-                   </label>
-                   <span class="col-md-3 col-sm-3" style="color:white;max-width: 30%;">Update</span>
-           </div>
+                <span class="col-md-2 col-sm-2" style="padding:0 0 0 5%; color:white; max-width: 15%;">Add</span>
+                <label class="col-md-1 col-sm-1" class="ip-switch"
+                    style="height:25px; width:60px; background-color: white; padding-left: 2%; padding-right: 0%; border-radius: 37px;">
+                    <input type="checkbox" id="cusOperation" style="display: none;">
+                    <span class="slider round"></span>
+                </label>
+                <span class="col-md-3 col-sm-3" style="color:white;max-width: 30%;">Update</span>
+            </div>
             <div class="input-group" style="width: 145%;">
-                <input id="customerId" type="text" style="color: white; letter-spacing: 0.25em; line-height: 1;"  class="bill-input-invoice customer-input-left" placeholder="Customer ID" readonly/>
-                <a id="btnIdSearch" href="#" style="margin-left: -20px; padding-top: 1.5%;" onClick="searchCustomer();"><i class="fa fa-search" style="color:white;"></i></a>
+                <input id="customerId" type="text" style="color: white; letter-spacing: 0.25em; line-height: 1;"
+                    class="bill-input-invoice customer-input-left" placeholder="Customer ID" readonly />
+                <a id="btnIdSearch" href="#" style="margin-left: -20px; padding-top: 1.5%;"
+                    onClick="searchCustomer();"><i class="fa fa-search" style="color:white;"></i></a>
             </div>
             <div class="row">
                 <select id="customerGender" name="gender" class="customer-input-left customer-input-left-50 col-md-3">
@@ -33,31 +35,49 @@
         </div>
         <div class="customer-form-right col-md-7">
             <div id="spinner" style="padding-top: 12%;position: absolute;">
-                 <i class="fa fa-spinner fa-spin" style="font-size: 75px;color: #723f45; "></i>
+                <i class="fa fa-spinner fa-spin" style="font-size: 75px;color: #723f45; "></i>
             </div>
             <div class="input-group" style="width: 145%;">
-                <input type="email" style="color: #723f45;letter-spacing: 0.25em; line-height: 1;"  class="bill-input-invoice customer-input-right" id="email" placeholder="Email"/>
-                <a id="btnEmailSearch" href="#" style="margin-left: -20px; padding-top: 1.5%;" onClick="searchCustomerByEmail();"><i class="fa fa-search" style="color:#723f45;"></i></a>
-            </div>
-           
-            <div class="input-group" style="width: 145%;">
-                <input id="phone1" type="number" style="color: #723f45; letter-spacing: 0.25em; line-height: 1;"  
-                class="bill-input-invoice customer-input-right" maxlength="10" placeholder="Phone Number 1" pattern="[0-9]+"/>
-                <a id="btnPhoneSearch" href="#" style="margin-left: -20px; padding-top: 1.5%;" onClick="searchCustomerByPhone();"><i class="fa fa-search" style="color:#723f45;"></i></a>
+                <input type="email" style="color: #723f45;letter-spacing: 0.25em; line-height: 1;"
+                    class="bill-input-invoice customer-input-right" id="email" placeholder="Email" />
+                <a id="btnEmailSearch" href="#" style="margin-left: -20px; padding-top: 1.5%;"
+                    onClick="searchCustomerByEmail();"><i class="fa fa-search" style="color:#723f45;"></i></a>
             </div>
 
-            <input type="number" id="phone2" style="letter-spacing: 0.25em;" class="customer-input-right"
-                        class="phone" name="phone"  placeholder="Phone Number 2"  maxlength="10" pattern="[0-9]+" />
+            <div class="input-group" style="width: 145%;">
+                <input id="phone1" type="number" style="color: #723f45; letter-spacing: 0.25em; line-height: 1;"
+                    class="bill-input-invoice customer-input-right" maxlength="10" placeholder="Phone Number 1"
+                    pattern="[0-9]+" />
+                <a id="btnPhoneSearch" href="#" style="margin-left: -20px; padding-top: 1.5%;"
+                    onClick="searchCustomerByPhone();"><i class="fa fa-search" style="color:#723f45;"></i></a>
+            </div>
+
+            <input type="number" id="phone2" style="letter-spacing: 0.25em;" class="customer-input-right" class="phone"
+                name="phone" placeholder="Phone Number 2" maxlength="10" pattern="[0-9]+" />
             <input type="text" class="customer-input-right" id="add1" placeholder="Address Line 1" />
             <input type="text" class="customer-input-right" id="add2" placeholder="Address Line 2" />
             <input type="text" class="customer-input-right-1 col-md-4" id="city" placeholder="City" id="city" />
             <input type="text" class="customer-input-right-1 col-md-4" id="zip" placeholder="Zip" id="zip" />
             <input type="text" class="customer-input-right-1 col-md-4" id="state" placeholder="State" id="state" />
-            <input onClick="register();" id="registerCus" type="submit" name="register" class="customer-add" value="Register" />
+            <input onClick="register();" id="registerCus" type="submit" name="register" class="customer-add"
+                value="Register" />
             <input onClick="update();" id="updateCus" type="submit" name="update" class="customer-add" value="Update" />
-            <input id="statusFail" type="text" name="status" class="" value="Customer Not Found" style="border: none; padding-left: 10%; color: red; font-weight: bold" readonly/>
-            <input id="statusSuccess" type="text" name="status" class="" value="Operation Successful" style="border: none; padding-left: 10%; color: green; font-weight: bold" readonly/>
-            <input id="statusExists" type="text" name="status" class="" value="Customer Already Exists !" style="border: none; padding-left: 10%; color: green; font-weight: bold" readonly/>
+            <input id="statusFail" type="text" name="status" class="" value="Customer Not Found"
+                style="border: none; padding-left: 10%; color: red; font-weight: bold" readonly />
+            <input id="statusSuccess" type="text" name="status" class="" value="Operation Successful"
+                style="border: none; padding-left: 10%; color: green; font-weight: bold" readonly />
+        </div>
+    </div>
+    <div id="popup" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="popup-text">Customer Exists !</p>
+            <p class="popup-text">Do you want to Update..?</p>
+            <div class="row">
+                <input onClick="update();" id="updateCust" type="submit" name="update" class="customer-add col-md-3"
+                    value="YES" style="display: block; margin: 0 auto;" />
+                <input id="btnClose" type="submit" name="register" class="customer-add col-md-3" value="NO" style="display: block; margin: 0 auto;" />
+            </div>
         </div>
     </div>
 </div>
