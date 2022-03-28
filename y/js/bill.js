@@ -181,7 +181,6 @@ function createItem(item) {
       );
 
       $("#qty-" + sku).keypress(function (e) {
-        debugger;
         var qty = $("#qty-"+sku).val();
         if(qty != undefined && qty != ""){
           //var selectedItem = e.target.value;
@@ -234,7 +233,6 @@ function validateBill(bill) {
 function saveBill() {
   $("#billSpinner").show();
   fillBill();
-  debugger;
   if (validateBill(newBill)) {
     if (billExists) {
       updateDb();
@@ -250,7 +248,6 @@ function saveBill() {
 }
 
 function saveDb() {
-  debugger;
   db.collection("bills")
     .add({
       billDate: newBill.billDate,
@@ -266,7 +263,6 @@ function saveDb() {
       employee: newBill.employee,
     })
     .then((snapshot) => {
-      debugger;
       $("#billStatusSuccess").show();
       setTimeout(function () {
         $("#billStatusSuccess").hide();
@@ -278,7 +274,6 @@ function saveDb() {
 }
 
 function updateDb() {
-  debugger;
   db.collection("bills")
     .doc(docId)
     .set(
@@ -300,7 +295,6 @@ function updateDb() {
       }
     )
     .then((snapshot) => {
-      debugger;
       $("#billStatusSuccess").show();
       setTimeout(function () {
         $("#billStatusSuccess").hide();
@@ -312,7 +306,6 @@ function updateDb() {
 }
 
 function printBill() {
-  debugger;
   var tempBill = JSON.stringify(newBill);
   window.localStorage.setItem("bill", tempBill);
 
@@ -365,7 +358,6 @@ function findBill() {
           snapshot.docs.forEach((doc) => {
             docId = doc.id;
             var bill = doc.data();
-            debugger;
             setBill(bill);
             billExists = true;
           });
@@ -375,7 +367,6 @@ function findBill() {
 }
 
 function setBill(bill) {
-  debugger;
   newBill = bill;
   newBill.billDate = new Date(bill.billDate);
   document.getElementById("billDate").valueAsDate = newBill.billDate;

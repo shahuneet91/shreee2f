@@ -7,7 +7,6 @@ $(document).ready(function () {
 
 
 function createPdfBill(bill){
-  debugger;
   $("#pdfInvNumber").text(bill.billId);
    
   var billItems = bill.items;
@@ -24,7 +23,6 @@ function createPdfBill(bill){
        );
      }
 
-     debugger;
      $("#pdfCustomerName").text(bill.customer.fname +" "+ bill.customer.lname);
      $("#pdfInveDate").text(bill.billDate);
      $("#pdfAmountDue").text(bill.billAmount);

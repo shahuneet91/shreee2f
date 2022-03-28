@@ -66,7 +66,6 @@ function register(){
 }
 
 function create(update) {
-  debugger;
   var date = new Date();
   var gender = $("#customerGender").val();
   var suffix = $("#suffix").val();
@@ -88,46 +87,44 @@ function create(update) {
 }
 
 function validate(customer, update) {
-  debugger;
   if (customer.fname == undefined || customer.fname.length == 0) {
     $("#fName").css("border-bottom", "1px solid red");
     setValid(false);
   }
 
-  // if(customer.lname == undefined || customer.lname.length == 0){
-  //   $("#lName").css("border-bottom","1px solid red");
-  //   setValid(false);
-  // }
+  if (customer.lname == undefined || customer.lname.length == 0) {
+    $("#lName").css("border-bottom", "1px solid red");
+    setValid(false);
+  }
 
-  // if(customer.phone1 == undefined || customer.phone1.length < 10){
-  //   $("#phone1").css("border-bottom","1px solid red");
-  //   setValid(false);
-  // }
+  if (customer.phone1 == undefined || customer.phone1.length < 10) {
+    $("#phone1").css("border-bottom", "1px solid red");
+    setValid(false);
+  }
 
-  // if(customer.add1 == undefined || customer.add1.length == 0){
-  //   $("#add1").css("border-bottom","1px solid red");
-  //   setValid(false);
-  // }
+  if (customer.add1 == undefined || customer.add1.length == 0) {
+    $("#add1").css("border-bottom", "1px solid red");
+    setValid(false);
+  }
 
-  // if(customer.city == undefined || customer.city.length == 0){
-  //   $("#city").css("border-bottom","1px solid red");
-  //   setValid(false);
-  // }
+  if (customer.city == undefined || customer.city.length == 0) {
+    $("#city").css("border-bottom", "1px solid red");
+    setValid(false);
+  }
 
-  // if(customer.zip == undefined || customer.zip.length == 0){
-  //   $("#zip").css("border-bottom","1px solid red");
-  //   setValid(false);
-  // }
+  if (customer.zip == undefined || customer.zip.length == 0) {
+    $("#zip").css("border-bottom", "1px solid red");
+    setValid(false);
+  }
 
-  // if(customer.state == undefined || customer.state.length == 0){
-  //   $("#state").css("border-bottom","1px solid red");
-  //   setValid(false);
-  // }
+  if (customer.state == undefined || customer.state.length == 0) {
+    $("#state").css("border-bottom", "1px solid red");
+    setValid(false);
+  }
 
-  if(valid){
+  if (valid) {
     isCustomerExists(customer, update);
   }
- 
 }
 
 function isCustomerExists(custmr, update) {
@@ -136,30 +133,20 @@ function isCustomerExists(custmr, update) {
     .where("phone1", "==", custmr.phone1)
     .get()
     .then((snapshot) => {
-      debugger;
       if (snapshot.docs.length == 0 && !update) {
         addCustomer(custmr);
       } else {
         if (update) {
-          debugger;
           snapshot.docs.forEach((doc) => {
-            debugger;
             custmr.id = doc.data().id;
             updateCustomer(doc.id, custmr);
             setUpdateView(custmr);
           });
         } else {
-          debugger;
           snapshot.docs.forEach((doc) => {
-            debugger;
+            var modal = document.getElementById("popup");
+            modal.style.display = "block";
             $("#spinner").hide();
-            $("#statusExists").show();
-            setTimeout(function () {
-              $("#statusExists").hide();
-            }, 5000);
-            var cus = doc.data();
-            console.log("customerId => " + cus.id);
-            
           });
         }
       }
@@ -173,13 +160,11 @@ function setValid(value) {
 }
 
 function update(){
-  debugger;
   $("#spinner").hide();
   create(true);
 }
 
 function updateCustomer(id, custmr){
-  debugger;
   db.collection("customers").doc(id).set(
     {
       addedDate: custmr.addedDate,
@@ -199,7 +184,6 @@ function updateCustomer(id, custmr){
     {
       merge: true,
     }).then((snapshot) => {
-      debugger;
       $("#spinner").hide();
       $("#statusSuccess").show();
       setTimeout(function () {
@@ -260,7 +244,6 @@ function setUpdateView(customer) {
   $("#spinner").hide();
   $("#statusFail").hide();
   $("#statusSuccess").hide();
-  $("#statusExists").hide();
 }
 
 function setCustomer(customer) {
@@ -308,6 +291,5 @@ function emptyForm() {
   $("#spinner").hide();
   $("#statusFail").hide();
   $("#statusSuccess").hide();
-  $("#statusExists").hide();
 }
 
